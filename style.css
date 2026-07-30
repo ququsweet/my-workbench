@@ -267,11 +267,17 @@ input,textarea,select{font-family:inherit;color:var(--ink);}
 .parse-live[hidden]{display:none;}
 .pl-card{background:var(--card-soft);border:1.5px dashed var(--peach);border-radius:14px;padding:12px 14px;}
 .pl-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px;}
-.pl-cat{font-size:12px;font-weight:700;color:#fff;background:var(--peach);padding:3px 10px;border-radius:999px;white-space:nowrap;}
+.pl-cat{font-size:12px;font-weight:700;color:#fff;background:var(--peach);padding:3px 10px;border-radius:999px;white-space:nowrap;border:none;cursor:pointer;transition:.15s;}
+.pl-cat:hover{background:var(--peach-deep);transform:translateY(-1px);}
 .pl-name{font-size:15px;font-weight:800;color:var(--ink);}
+.pl-yield{font-size:12.5px;color:var(--peach-deep);font-weight:600;margin-bottom:6px;}
 .pl-stats{display:flex;gap:14px;font-size:12.5px;color:var(--ink-soft);margin-bottom:8px;}
 .pl-mat{margin:0;padding-left:18px;font-size:13px;color:var(--ink);line-height:1.7;}
 .pl-mat .empty{list-style:none;margin-left:-18px;color:var(--ink-soft);}
+.pl-steps{margin-top:10px;padding-top:8px;border-top:1px dashed var(--line);}
+.pl-k{font-size:11.5px;color:var(--ink-soft);margin-bottom:4px;}
+.pl-step-list{margin:0;padding-left:18px;font-size:12.5px;color:var(--ink-soft);line-height:1.7;}
+.pl-step-list .empty{list-style:none;margin-left:-18px;color:var(--ink-soft);}
 .pl-hint{margin-top:8px;font-size:11.5px;color:var(--peach-deep);}
 /* 分段选择（食品 / 手工） */
 .seg{display:flex;gap:8px;}

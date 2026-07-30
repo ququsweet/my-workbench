@@ -850,7 +850,7 @@
       </div>`;
     paintCraftArea();
     $('#parseBtn').onclick = onParseClick;
-    $('#parseClear').onclick = () => { const ta = $('#parseInput'); if (ta) ta.value = ''; setParseMsg(''); const lv = $('#parseLive'); if (lv) lv.hidden = true; };
+    $('#parseClear').onclick = () => { const ta = $('#parseInput'); if (ta) ta.value = ''; setParseMsg(''); parseCatOverride = null; const lv = $('#parseLive'); if (lv) lv.hidden = true; };
     const pi = $('#parseInput');
     if (pi) {
       pi.addEventListener('input', () => {
@@ -859,8 +859,8 @@
           setParseMsg('🔗 检测到小红书链接：小红书不允许程序自动读取笔记正文（平台限制）。请在小红书 App 打开该笔记 → 右上角「…」→「复制」（选复制<b>正文</b>，不是「复制链接」）→ 回到这里把正文粘贴进来 → 点「粘贴并解析」即可自动拆材料与步骤 ✨');
           const lv = $('#parseLive'); if (lv) lv.hidden = true;
         } else if (!v) {
-          setParseMsg(''); const lv = $('#parseLive'); if (lv) lv.hidden = true;
-        } else { setParseMsg(''); liveParse(); }
+          setParseMsg(''); parseCatOverride = null; const lv = $('#parseLive'); if (lv) lv.hidden = true;
+        } else { setParseMsg(''); parseCatOverride = null; liveParse(); }
       });
       pi.addEventListener('paste', () => setTimeout(liveParse, 60));
     }
@@ -895,7 +895,7 @@
     el.innerHTML = arr.slice().reverse().map(it => `
       <div class="row craft-row" data-id="${it.id}">
         <div class="row-main"><div class="row-title">${esc(it.name)}</div>
-          <div class="row-sub">📦 材料 ${it.materials ? it.materials.length : 0} 项 ｜ 📝 步骤 ${it.steps ? it.steps.length : 0} 项</div></div>
+          <div class="row-sub">📦 材料 ${it.materials ? it.materials.length : 0} 项 ｜ 📝 步骤 ${it.steps ? it.steps.length : 0} 项${it.yield ? ' ｜ 🍽 ' + esc(it.yield) : ''}</div></div>
         <button class="row-edit" data-edit="${it.id}">✏️</button>
         <button class="row-del" data-del="${it.id}">🗑</button>
       </div>`).join('');
@@ -953,6 +953,7 @@
       <div class="field"><label>分类</label><div class="seg">
         <button type="button" class="seg-btn ${cat === 'food' ? 'on' : ''}" data-cat="food">🧁 食品DIY</button>
         <button type="button" class="seg-btn ${cat === 'hand' ? 'on' : ''}" data-cat="hand">🧶 手工DIY</button></div></div>
+      <div class="field"><label>份量 / 产量（可选）</label><input type="text" id="eYield" value="${esc(item.yield || '')}" placeholder="如：可做12个 / 6寸 / 2人份"/></div>
       <div class="field"><label>所需材料 / 克重</label><div id="eMat"></div><button type="button" class="btn ghost sm" id="eMatAdd">＋ 添加材料</button></div>
       <div class="field"><label>制作步骤</label><div id="eStep"></div><button type="button" class="btn ghost sm" id="eStepAdd">＋ 添加步骤</button></div>
       <div class="modal-actions"><button class="btn ghost" id="eCancel">取消</button><button class="btn" id="eOk">${isEdit ? '保存' : '添加'}</button></div>`);
@@ -962,7 +963,7 @@
     $('#eOk').onclick = () => {
       const name = $('#eName').value.trim() || '未命名';
       const c = getCraft(); const arr = curCat === 'food' ? c.food : c.hand;
-      const data = { name, materials: L.getMat(), steps: L.getStep() };
+      const data = { name, materials: L.getMat(), steps: L.getStep(), yield: $('#eYield').value.trim() };
       if (isEdit) { const it = arr.items.find(x => x.id === item.id); if (it) Object.assign(it, data); }
       else arr.items.unshift({ id: uid(), ...data });
       save(); closeModal(); craftState.cat = curCat; paintCraftArea();
@@ -990,6 +991,7 @@
       text = fetched; $('#parseInput').value = text;
     }
     const data = parseContent(text);
+    if (parseCatOverride) data.cat = parseCatOverride;
     setParseMsg('');
     showParseResult(data);
   }
@@ -1018,11 +1020,15 @@
   const STEP_HEADER = /^(步骤|做法|制作|流程|过程|操作|方法|教程)/;
 
   function cleanName(s) {
-    return s.replace(/[#@]/g, '').replace(/(的做法|配方|教程|笔记|步骤|来啦)$/, '').replace(/[｜|·•\-—~].*$/, '').replace(/[🍰🧁🎂✨💕❤️🔥🌟⭐✅📌]/g, '').trim();
+    return s.replace(/[#@]/g, '')
+      .replace(/[🍰🧁🎂🍪🥖🍞🥐🧇🍩🥧🥯🍮🍡🍧🥣🥄🧂✨💕❤️🔥🌟⭐✅📌👉👇💡🍃🌸💗🥰😋🎀🪡🧵✂️🖍️🎨🪀🧸🫧]/g, '')
+      .replace(/(的做法|配方|教程|笔记|步骤|来啦|食谱|合集|大全)\s*$/, '')
+      .replace(/[｜|·•\-—~].*$/, '')
+      .replace(/^[的了这那该你它我他她们咱们]+/, '').trim();
   }
   function normTitle(ln) {
-    return ln.replace(/^(?:超简单|零失败|私藏|新手|保姆级|治愈|周末|今日|今天|手作|自制|懒人|极简|必看|收藏|超好吃|巨好吃|绝绝子|建议|在家|教你|[！!。\s])+/, '')
-      .replace(/[🍰🧁🎂✨💕❤️🔥🌟⭐✅📌]/g, '').trim();
+    return ln.replace(/^(?:超简单|零失败|私藏|新手|保姆级|治愈|周末|今日|今天|手作|自制|懒人|极简|必看|收藏|超好吃|巨好吃|绝绝子|建议|在家|教你|最近|超爱|爱了|入手|安利|分享|复刻|打卡|挑战|这一款|这款|一款|记录|测评|试试|跟我|终于|第一次|[！!。\s])+/, '')
+      .replace(/[🍰🧁🎂🍪🥖🍞🥐🧇🍩🥧🥯🍮🍡🍧🥣🥄🧂✨💕❤️🔥🌟⭐✅📌👉👇💡🍃🌸💗🥰😋🎀🪡🧵✂️🖍️🎨🪀🧸🫧]/g, '').trim();
   }
   function detectName(lines, t) {
     let m = t.match(/[《【\["“]([^》\]】"”]{1,30})[》\]】"”]/);
@@ -1043,13 +1049,17 @@
     const out = [];
     for (let fr of frags) {
       fr = fr.replace(/^[\s\-\*•·▪️◾◽●○◆★✓✔️⭐🔸🔹➤►]+/, '').replace(/^[①②③④⑤⑥⑦⑧⑨⑩]\s*/, '');
+      fr = fr.replace(/^\s*(?:\d+|[一二三四五六七八九十百零]+)[.、)）:：]\s*/, ''); // 去掉材料前的序号 1. 2、
       fr = fr.replace(/[（(][^）)]*?[）)]/g, mm => isAmt(mm) ? '' : mm); // 去掉括号内的用量
       if (!fr) continue;
       const r = fr.match(RE_RATIO), a = fr.match(RE_AMT), s = fr.match(RE_SOFT);
-      const amount = r ? r[0] : (a ? a[0] : (s ? s[0] : ''));
+      let amount = r ? r[0] : (a ? a[0] : (s ? s[0] : ''));
       let name = fr.replace(RE_RATIO, '').replace(RE_AMT, '').replace(RE_SOFT, '').replace(/[：:]/g, '').trim();
       name = name.replace(/^(倒入|加入|放入|加|放|取|准备|用|把|将|适量|少许|一些)/, '')
         .replace(/[（）()]/g, '').replace(/[的]+$/, '').replace(/[🍰🧁🎂✨💕]/g, '').trim();
+      // 去掉名字里孤立的“约/大概/大约/差不多”（开头或结尾），并入用量前缀
+      const pre = name.match(/^(约|大概|大约|差不多|约莫)\s*/) || name.match(/\s*(约|大概|大约|差不多|约莫)$/);
+      if (pre) { name = name.replace(pre[0], '').trim(); if (amount && !/^(约|大概|大约|差不多)/.test(amount)) amount = pre[0].replace(/\s/g, '') + amount; }
       if (!name) name = fr.replace(RE_RATIO, '').replace(RE_AMT, '').replace(RE_SOFT, '').trim() || fr;
       if (name) out.push({ name, amount });
     }
@@ -1063,17 +1073,28 @@
   }
   function parseContent(text) {
     const norm = s => s.replace(/\s*#\S+/g, ' ')
-      .replace(/[🍰🧁🎂🍪🥖🍞🥐🧇🍩🥧🥯🍮✨💕❤️🔥🌟⭐✅📌👉👇💡🍃🌸💗🥰😋]/g, ' ')
+      .replace(/[🍰🧁🎂🍪🥖🍞🥐🧇🍩🥧🥯🍮🍡🍧🥣🥄🧂✨💕❤️🔥🌟⭐✅📌👉👇💡🍃🌸💗🥰😋🎀🪡🧵✂️🖍️🎨🪀🧸🫧]/g, ' ')
       .replace(/[ \t]+/g, ' ').trim();
     const t = norm(text);
     const lines = t.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
 
-    const foodKw = { '蛋糕': 2, '面包': 2, '饼干': 2, '甜点': 2, '甜品': 2, '烘焙': 3, '食谱': 2, '配方': 2, '面团': 3, '奶油': 3, '糖粉': 2, '低筋': 3, '高筋': 3, '鸡蛋': 2, '牛奶': 2, '烤箱': 3, '打发': 3, '裱花': 2, '慕斯': 2, '芝士': 2, '戚风': 3, '可颂': 2, '布丁': 2, '蛋挞': 2, '面粉': 3, '黄油': 3, '砂糖': 2, '糖': 1, '酵母': 2, '泡打粉': 2, '巧克力': 2, '草莓': 1, '芒果': 1, '抹茶': 1, '吐司': 2, '披萨': 2, '馒头': 2, '包子': 2, '汤圆': 2, '雪媚娘': 2, '马卡龙': 2, '曲奇': 2, '椰蓉': 1, '芋泥': 1, '红豆': 1, '淡奶油': 3 };
-    const handKw = { '黏土': 3, '超轻黏土': 3, '折纸': 3, '编织': 3, '钩针': 3, '刺绣': 3, '手工': 2, '拼豆': 3, '滴胶': 3, '串珠': 3, '木工': 3, 'diy': 2, '羊毛毡': 3, '不织布': 3, '衍纸': 3, '史莱姆': 2, '流体熊': 3, '数字油画': 3, '扭棒': 3, '热熔胶': 2, '胶水': 1, '剪刀': 1, '毛线': 3, '棉绳': 2, '麻绳': 2, '丝带': 2, '珠': 2, '纸板': 1, '铁丝': 2, '丙烯': 2, '颜料': 1, '画布': 2, '缠绕': 2, '粘贴': 1, '缝': 1, '折': 1, '穿': 1, '串': 1, '编': 2 };
+    const foodKw = { '蛋糕': 2, '面包': 2, '饼干': 2, '甜点': 2, '甜品': 2, '烘焙': 3, '食谱': 2, '配方': 2, '面团': 3, '奶油': 3, '糖粉': 2, '低筋': 3, '高筋': 3, '鸡蛋': 2, '牛奶': 2, '烤箱': 3, '打发': 3, '裱花': 2, '慕斯': 2, '芝士': 2, '戚风': 3, '可颂': 2, '布丁': 2, '蛋挞': 2, '面粉': 3, '黄油': 3, '砂糖': 2, '糖': 1, '酵母': 2, '泡打粉': 2, '巧克力': 2, '草莓': 1, '芒果': 1, '抹茶': 1, '吐司': 2, '披萨': 2, '馒头': 2, '包子': 2, '汤圆': 2, '雪媚娘': 2, '马卡龙': 2, '曲奇': 2, '椰蓉': 1, '芋泥': 1, '红豆': 1, '淡奶油': 3, '舒芙蕾': 2, '可丽露': 2, '贝果': 2, '麻薯': 2, '铜锣烧': 2, '班戟': 2, '千层': 2, '蛋黄酥': 2, '凤梨酥': 2, '司康': 2, '华夫': 2, '可丽饼': 2, '可可': 1, '咖啡': 1, '香草': 1, '柠檬': 1, '蓝莓': 1, '树莓': 1, '奶酪': 2, '炼乳': 1, '焦糖': 1, '杏仁': 1, '核桃': 1, '燕麦': 1, '糯米': 1, '绿豆': 1, '桂花': 1, '柚子': 1, '栗子': 1, '紫薯': 1, '南瓜': 1, '苹果': 1, '香蕉': 1, '酸奶': 1, '荔枝': 1, '龙眼': 1 };
+    const handKw = { '黏土': 3, '超轻黏土': 3, '折纸': 3, '编织': 3, '钩针': 3, '刺绣': 3, '手工': 2, '拼豆': 3, '滴胶': 3, '串珠': 3, '木工': 3, 'diy': 2, '羊毛毡': 3, '不织布': 3, '衍纸': 3, '史莱姆': 2, '流体熊': 3, '数字油画': 3, '扭棒': 3, '热熔胶': 2, '胶水': 1, '剪刀': 1, '毛线': 3, '棉绳': 2, '麻绳': 2, '丝带': 2, '珠': 2, '纸板': 1, '铁丝': 2, '丙烯': 2, '颜料': 1, '画布': 2, '缠绕': 2, '粘贴': 1, '缝': 1, '折': 1, '穿': 1, '串': 1, '编': 2, '戳戳绣': 3, '戳毛球': 3, '钩织': 3, '热缩片': 3, '软陶': 3, '纸艺': 3, '拼贴': 2, '立体书': 2, '羊毛': 2, '毡': 2, '戳绣': 3, '拼布': 3, '布艺': 3, '丝网花': 3, '永生花': 2, '干花': 2, '押花': 2, '微景观': 3, '苔藓': 2, '香薰': 2, '蜡烛': 2, '手工皂': 3, '皮具': 3, '中国结': 3, '绳编': 3, '钩花': 3, '棒针': 3, '蕾丝': 2, '轻黏土': 3, '木雕': 2, '篆刻': 2, '拓印': 2, '版画': 2, '沙画': 2, '流体画': 3, '石英砂': 2, '肌理画': 3 };
     let f = 0, h = 0; const low = t.toLowerCase();
     for (const k in foodKw) if (low.includes(k.toLowerCase())) f += foodKw[k];
     for (const k in handKw) if (low.includes(k.toLowerCase())) h += handKw[k];
     const cat = f === h ? 'food' : (f > h ? 'food' : 'hand');
+
+    // 份量 / 产量识别：可做12个、6寸、2人份 等
+    let yieldText = '';
+    const ym = t.match(/(?:可做|约做|成品|产量|份量|分量|做出|做出来)\D{0,6}?(\d+|[一二三四五六七八九十]+)\s*(个|块|片|条|只|枚|根|人份|寸|英寸|厘米|cm|公分|杯)?/)
+            || t.match(/(\d+|[一二三四五六七八九十]+)\s*(人份|寸|英寸|厘米|cm|公分)/);
+    if (ym) {
+      let num = ym[1];
+      const cn = { '一': 1, '二': 2, '两': 2, '三': 3, '四': 4, '五': 5, '六': 6, '七': 7, '八': 8, '九': 9, '十': 10 };
+      if (cn[num] !== undefined) num = cn[num];
+      yieldText = num + (ym[2] || '');
+    }
 
     const name = detectName(lines, t);
     let mode = 'auto';
@@ -1089,12 +1110,14 @@
       if (parts.length > 1) parts.forEach(p => { if (p && !steps.includes(p)) steps.push(p); });
       else steps.push(s);
     };
+    const isYieldLine = l => /\d/.test(l) && /(可做|约做|成品|产量|份量|分量|做出来|厘米|寸|人份)/.test(l);
     const processLine = (rawLine) => {
       let l = cleanLine(rawLine);
       if (!l) return;
+      if (isYieldLine(l)) return; // 产量/份量说明句，不计入步骤
       if (!titleChecked) {
         titleChecked = true;
-        if (!isAmt(l) && name && name.length >= 3 && l.includes(name)) return; // 首行即标题，跳过
+        if (!isAmt(l) && name && normTitle(l).includes(name)) return; // 首行即标题，跳过
       }
       const hasAmt = isAmt(l);
       let isMat = false, isStep = false;
@@ -1121,11 +1144,12 @@
       if (STEP_HEADER.test(raw)) { mode = 'step'; const rest = stripHead(raw, STEP_RE); if (rest) processLine(rest); continue; }
       processLine(raw);
     }
-    return { name, cat, materials, steps, fScore: f, hScore: h };
+    return { name, cat, materials, steps, yield: yieldText, fScore: f, hScore: h };
   }
 
   /* 实时预览：粘贴即解析，下方即时显示识别结果 */
   let liveTimer = null;
+  let parseCatOverride = null;
   function liveParse() {
     const pi = $('#parseInput'); if (!pi) return;
     const v = pi.value.trim();
@@ -1135,17 +1159,25 @@
     clearTimeout(liveTimer);
     liveTimer = setTimeout(() => {
       const d = parseContent(v);
-      const catName = d.cat === 'food' ? '🧁 食品DIY' : '🧶 手工DIY';
+      const effCat = parseCatOverride || d.cat;
+      const catName = effCat === 'food' ? '🧁 食品DIY' : '🧶 手工DIY';
       const matL = d.materials.length
         ? d.materials.slice(0, 6).map(x => `<li>${esc(x.name)}${x.amount ? ' · <b>' + esc(x.amount) + '</b>' : ''}</li>`).join('')
         : '<li class="empty">未识别到材料</li>';
+      const stepL = d.steps.length
+        ? d.steps.slice(0, 3).map(s => '<li>' + esc(s) + '</li>').join('')
+        : '<li class="empty">未识别到步骤</li>';
+      const yieldHtml = d.yield ? `<div class="pl-yield">🍽 份量：${esc(d.yield)}</div>` : '';
       live.innerHTML = `<div class="pl-card">
-        <div class="pl-top"><span class="pl-cat">${catName}</span><span class="pl-name">${esc(d.name)}</span></div>
+        <div class="pl-top"><button type="button" class="pl-cat" id="plCatToggle" title="点此切换分类">${catName} ⇄</button><span class="pl-name">${esc(d.name)}</span></div>
+        ${yieldHtml}
         <div class="pl-stats"><span>📦 材料 ${d.materials.length} 项</span><span>📝 步骤 ${d.steps.length} 项</span></div>
         <ul class="pl-mat">${matL}</ul>
+        <div class="pl-steps"><div class="pl-k">步骤预览</div><ol class="pl-step-list">${stepL}</ol></div>
         <div class="pl-hint">确认无误点「粘贴并解析」→ 选 添加 / 编辑 填入对应分区</div>
       </div>`;
       live.hidden = false;
+      const tog = $('#plCatToggle'); if (tog) tog.onclick = () => { parseCatOverride = (effCat === 'food') ? 'hand' : 'food'; liveParse(); };
     }, 350);
   }
 
@@ -1157,10 +1189,12 @@
     const stepHtml = data.steps.length
       ? data.steps.map(s => '<li>' + esc(s) + '</li>').join('')
       : '<li class="empty">未识别出步骤，可点「编辑」补充</li>';
+    const yieldHtml = data.yield ? `<div class="pr-row"><span class="pr-k">份量 / 产量</span><b class="pr-v">${esc(data.yield)}</b></div>` : '';
     showModal(`<h3>🤖 识别结果 · ${catName}</h3>
       <div class="parse-result">
         <div class="pr-row"><span class="pr-k">内容名字</span><b class="pr-v">${esc(data.name)}</b></div>
         <div class="pr-row"><span class="pr-k">识别分类</span><b class="pr-v">${catName}</b></div>
+        ${yieldHtml}
         <div class="pr-row"><span class="pr-k">已识别</span><span class="pr-v" style="font-size:13px;font-weight:600">📦 材料 ${data.materials.length} 项 ｜ 📝 步骤 ${data.steps.length} 项</span></div>
         <div class="pr-block"><div class="pr-k">所需材料 / 克重</div><ul class="pr-list">${matHtml}</ul></div>
         <div class="pr-block"><div class="pr-k">制作步骤</div><ol class="pr-list">${stepHtml}</ol></div>
@@ -1173,11 +1207,11 @@
     $('#pCancel').onclick = closeModal;
     $('#pAdd').onclick = () => {
       const c = getCraft(); const arr = data.cat === 'food' ? c.food : c.hand;
-      arr.items.unshift({ id: uid(), name: data.name || '未命名', materials: data.materials || [], steps: data.steps || [] });
+      arr.items.unshift({ id: uid(), name: data.name || '未命名', materials: data.materials || [], steps: data.steps || [], yield: data.yield || '' });
       save(); closeModal(); craftState.cat = data.cat; paintCraftArea();
       alert('已添加到' + catName + '：' + (data.name || '未命名') + ' ✅');
     };
-    $('#pEdit').onclick = () => openCraftEditor(data.cat, { name: data.name, materials: data.materials, steps: data.steps });
+    $('#pEdit').onclick = () => openCraftEditor(data.cat, { name: data.name, materials: data.materials, steps: data.steps, yield: data.yield || '' });
   }
 
   /* ===================================================================
