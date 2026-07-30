@@ -1,0 +1,1583 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>我的专属工作台</title>
+  <meta name="theme-color" content="#E9B7A0" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="工作台" />
+  <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAHLklEQVR4nO3du44cRRTG8TMrS6CRJUu8ABIp2ox4Y0e8hF+A1DwATnkBXoKI2DGZRYrECyAhoRWOlsD00tvbl7qcrqpzzv8XcVnPdHd9X1VNz+z4IoO5//D+ofcx4FzX27tL72OYdD0Qwg6RvoVo/sSEHntal6HZkxF85GpRhtOfgOCj1plFOO2BCT60nVEE9Qck+DibZhFutB5IhPCjDc2cqTSJ4KOX2tWgegUg/OipNn9VBSD8GEFNDosLQPgxktI8FhWA8GNEJbnMLgDhx8hy85lVAMIPC3JymlwAwg9LUvOaVADCD4tScntYAMIPy47yq/pRCMCa3QIw+8ODvRxvFoDww5OtPLMFQmirBWD2h0druWYFQGjPCsDsD8+W+WYFQGhPCsDsjwjmOWcFQGiPBWD2RyRT3lkBEBoFQGgXEbY/iIsVAKFRAIRGARAaBUBoN7wARmSsAAiNAiA0CoDQKABCowAIjQIgNAqA0ChApct9zOf2ggJUGCGAIxyDZRSg0Dx4PULY+/m9oAAFRgzciMdkAQXINHLQRj62UVGADBYCZuEYR0IBElzuj4PVMngpx0IR0rzofQCj0whS6WM8XOuft/YxvKMAO0qCqznzrj1WbqApwT62QBt6h1/zOdgObaMAKzwGxuM5aaAAC56D4vncSlGAmQgBiXCOOSjAfyIFI9K5HqEAEjMQEc95TfgCRA5C5HOfhH0fgMH/ZLoOUd8rCLkCEP7nol6TcAWIOtApIl6bUAWIOMC5ol2jMAWINrA1Il2rEAWINKBaolwz9wWIMpBniHDtXBcgwgCezfs1dFsA7wPXkudr6bIAngesF6/X1NU7wV4HaRQe3zV2swIQ/nY8XWsXBfA0IFZ4uebmC+BlICzycO1NF8DDAFhnfQzMFsD6hffE8liYvQu0difC8kBYwl0gwAk3BWD2b8fTtXZTAKCEiwJ4mpGs8HLNXRQAKGW+AF5mIos8XHvzBQBqUACEZroAHpZg66yPgekCALUoAEIzWwDrS68nlsfCbAEADWY/Ddram3c/PP7zT2+/73gk2ywc42gu9x/eP/Q+iFwtl9x5qJZGCdkox2jxY9JsgRAaBdixN7Om/P8WLBzjyCgAQqMACM1cAVq+AD56ATnCi+CRjtHi+wHmCgBoMncbtNcsY+Ee+wjHaO1WKAWAKmsFYAuE0CgAQqMACI0CIDQKgNAoAEKjAAiNAiA0CoDQKABCowAIzVwBrH3WJBKLY2OuAIAmvhalkb9++zXr5199/c1JR4I5CnCS3MAf/XkKcQ4KoKg29KmPTRn0mPuFmMlIvxhzZvD3jFQEiy+ARVgBqvQK/vL5RyqCNdwFKtQ7/HMjHYs1ZrdAIuXboI9//P527b9/9uVX747+7OhhS1kNas5/jdXtj0iwAmwN/NJWEEYP/2SrBLXnv4UCdJJagNSBX5oHwUr4J/MSaJz/HssFMP0aIOXClw7+/M9aC7/I/8escf57LIdfhLtAqn78+Zcn//7dt6+HflwY3wKJ7G+Dama/uX/+/nN3K7AM6FJpYGsf9/OXX6ic/95WyPoKYHoLJNJ/AI5CmvozrR5XU+9rr8F8AYAaLgrQaybKmYFH+FlNHmZ/EScF2FL6xs7c0f5/ZBrHrnENR+amAF5mJAs8XWs3BdhSM4NZnv0nNefgffYXcXAbdEnjtug08ClvgKXuwXNvhWo+7vSusMZHITzN/iIO3wh7uG6XYBpY7Q+DWVF7/t7CL+JwBRDR/WUZjVWg1xthIrq/K0ABDNEqQc7ngEb8KIRWATyGX8RxAUT6lGAkhP+Y67tAngeuFe/X0HUBRHQG0OLv3Gocs/fwiwQogBZLJbB0rL2FKIDWTGYhWOz787h+EbzU+vZoS9zuLBNiBZhoDuxIqwHhLxdqBZhof6ucl2+GixZ+kaAFmFgtAsHXE7oAIud9x6h2Gc7ackUOvwgFEJE2X7Q74t8PED38IhTg0UjfNt0C4f/E3cehS02B8F4Egv9UqNugKTwHxPO5lWIFWOFtNSD42yjADutFIPjHKEACa0Ug+OkoQIbRi0Dw81GAAvOg9S4Doa9DASotA3h2IQi8LgqgbC2gpaUg7OejAA0Q5HHdXG/vLr0PAuiFd4IRGgVAaBQAod2IiPA6ABFdb+8urAAIjQIgtMcCsA1CJFPeWQEQGgVAaE8KwDYIEcxzzgqA0J4VgFUAni3zzQqA0FYLwCoAj9ZyzQqA0DYLwCoAT7byvLsCUAJ4sJdjtkBw7WgSPywAqwA8S1oBKAEsSslt8haIEsCS1LxmvQagBLAgJ6fZL4IpAUaWm8+iu0CUACMqyWXxbVBKgJGU5rHqfQBKgBHU5FAlwPxNk+hBYwJWncEpAlrR2n2ofhSCLRFa0MzZaYFlNYC2MybY02dsioBaZ+4smm1ZKAJytdhSN9+zUwTsaf06suuLVsoAkb43T/4FhmOag/d0eDwAAAAASUVORK5CYII=" />
+  <link rel="apple-touch-icon" href="data:image/png;base64,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" />
+  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%20%22%E6%88%91%E7%9A%84%E4%B8%93%E5%B1%9E%E5%B7%A5%E4%BD%9C%E5%8F%B0%22%2C%20%22short_name%22%3A%20%22%E5%B7%A5%E4%BD%9C%E5%8F%B0%22%2C%20%22description%22%3A%20%22%E7%8C%AA%E7%8C%AA%E4%B9%8B%E5%AE%B6%20%C2%B7%20%E5%81%A5%E5%BA%B7%E7%94%9F%E6%B4%BB%20%C2%B7%20%E5%B0%8F%E5%98%9F%E9%A2%91%E9%81%93%20%C2%B7%20%E5%BD%93%E4%B8%AA%E4%BC%9A%E8%AE%A1%20%C2%B7%20%E5%AD%A6%E4%B9%A0%E8%87%B3%E4%B8%8A%20%C2%B7%20%E6%97%B6%E9%97%B4%E8%AE%B0%E5%BD%95%20%C2%B7%20%E8%BF%91%E6%9C%9F%E9%87%8D%E8%A6%81%20%E2%80%94%E2%80%94%20%E4%B8%80%E4%B8%AA%E5%AE%8C%E5%85%A8%E6%9C%AC%E5%9C%B0%E7%95%99%E5%AD%98%E7%9A%84%E7%94%9F%E6%B4%BB%E5%B7%A5%E4%BD%9C%E5%8F%B0%22%2C%20%22lang%22%3A%20%22zh-CN%22%2C%20%22start_url%22%3A%20%22.%2F%22%2C%20%22scope%22%3A%20%22.%2F%22%2C%20%22display%22%3A%20%22standalone%22%2C%20%22background_color%22%3A%20%22%23F3EDE2%22%2C%20%22theme_color%22%3A%20%22%23E9B7A0%22%2C%20%22orientation%22%3A%20%22any%22%2C%20%22icons%22%3A%20%5B%7B%22src%22%3A%20%22data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAHLklEQVR4nO3du44cRRTG8TMrS6CRJUu8ABIp2ox4Y0e8hF%2BA1DwATnkBXoKI2DGZRYrECyAhoRWOlsD00tvbl7qcrqpzzv8XcVnPdHd9X1VNz%2Bz4IoO5%2F%2FD%2Bofcx4FzX27tL72OYdD0Qwg6RvoVo%2FsSEHntal6HZkxF85GpRhtOfgOCj1plFOO2BCT60nVEE9Qck%2BDibZhFutB5IhPCjDc2cqTSJ4KOX2tWgegUg%2FOipNn9VBSD8GEFNDosLQPgxktI8FhWA8GNEJbnMLgDhx8hy85lVAMIPC3JymlwAwg9LUvOaVADCD4tScntYAMIPy47yq%2FpRCMCa3QIw%2B8ODvRxvFoDww5OtPLMFQmirBWD2h0druWYFQGjPCsDsD8%2BW%2BWYFQGhPCsDsjwjmOWcFQGiPBWD2RyRT3lkBEBoFQGgXEbY%2FiIsVAKFRAIRGARAaBUBoN7wARmSsAAiNAiA0CoDQKABCowAIjQIgNAqA0ChApct9zOf2ggJUGCGAIxyDZRSg0Dx4PULY%2B%2Fm9oAAFRgzciMdkAQXINHLQRj62UVGADBYCZuEYR0IBElzuj4PVMngpx0IR0rzofQCj0whS6WM8XOuft%2FYxvKMAO0qCqznzrj1WbqApwT62QBt6h1%2FzOdgObaMAKzwGxuM5aaAAC56D4vncSlGAmQgBiXCOOSjAfyIFI9K5HqEAEjMQEc95TfgCRA5C5HOfhH0fgMH%2FZLoOUd8rCLkCEP7nol6TcAWIOtApIl6bUAWIOMC5ol2jMAWINrA1Il2rEAWINKBaolwz9wWIMpBniHDtXBcgwgCezfs1dFsA7wPXkudr6bIAngesF6%2FX1NU7wV4HaRQe3zV2swIQ%2FnY8XWsXBfA0IFZ4uebmC%2BBlICzycO1NF8DDAFhnfQzMFsD6hffE8liYvQu0difC8kBYwl0gwAk3BWD2b8fTtXZTAKCEiwJ4mpGs8HLNXRQAKGW%2BAF5mIos8XHvzBQBqUACEZroAHpZg66yPgekCALUoAEIzWwDrS68nlsfCbAEADWY%2FDdram3c%2FPP7zT2%2B%2F73gk2ywc42gu9x%2FeP%2FQ%2BiFwtl9x5qJZGCdkox2jxY9JsgRAaBdixN7Om%2FP8WLBzjyCgAQqMACM1cAVq%2BAD56ATnCi%2BCRjtHi%2BwHmCgBoMncbtNcsY%2BEe%2BwjHaO1WKAWAKmsFYAuE0CgAQqMACI0CIDQKgNAoAEKjAAiNAiA0CoDQKABCowAIzVwBrH3WJBKLY2OuAIAmvhalkb9%2B%2BzXr5199%2Fc1JR4I5CnCS3MAf%2FXkKcQ4KoKg29KmPTRn0mPuFmMlIvxhzZvD3jFQEiy%2BARVgBqvQK%2FvL5RyqCNdwFKtQ7%2FHMjHYs1ZrdAIuXboI9%2F%2FP527b9%2F9uVX747%2B7OhhS1kNas5%2FjdXtj0iwAmwN%2FNJWEEYP%2F2SrBLXnv4UCdJJagNSBX5oHwUr4J%2FMSaJz%2FHssFMP0aIOXClw7%2B%2FM9aC7%2FI%2F8escf57LIdfhLtAqn78%2BZcn%2F%2F7dt6%2BHflwY3wKJ7G%2BDama%2FuX%2F%2B%2FnN3K7AM6FJpYGsf9%2FOXX6ic%2F95WyPoKYHoLJNJ%2FAI5CmvozrR5XU%2B9rr8F8AYAaLgrQaybKmYFH%2BFlNHmZ%2FEScF2FL6xs7c0f5%2FZBrHrnENR%2BamAF5mJAs8XWs3BdhSM4NZnv0nNefgffYXcXAbdEnjtug08ClvgKXuwXNvhWo%2B7vSusMZHITzN%2FiIO3wh7uG6XYBpY7Q%2BDWVF7%2Ft7CL%2BJwBRDR%2FWUZjVWg1xthIrq%2FK0ABDNEqQc7ngEb8KIRWATyGX8RxAUT6lGAkhP%2BY67tAngeuFe%2FX0HUBRHQG0OLv3Gocs%2FfwiwQogBZLJbB0rL2FKIDWTGYhWOz787h%2BEbzU%2BvZoS9zuLBNiBZhoDuxIqwHhLxdqBZhof6ucl2%2BGixZ%2BkaAFmFgtAsHXE7oAIud9x6h2Gc7ackUOvwgFEJE2X7Q74t8PED38IhTg0UjfNt0C4f%2FE3cehS02B8F4Egv9UqNugKTwHxPO5lWIFWOFtNSD42yjADutFIPjHKEACa0Ug%2BOkoQIbRi0Dw81GAAvOg9S4Doa9DASotA3h2IQi8LgqgbC2gpaUg7OejAA0Q5HHdXG%2FvLr0PAuiFd4IRGgVAaBQAod2IiPA6ABFdb%2B8urAAIjQIgtMcCsA1CJFPeWQEQGgVAaE8KwDYIEcxzzgqA0J4VgFUAni3zzQqA0FYLwCoAj9ZyzQqA0DYLwCoAT7byvLsCUAJ4sJdjtkBw7WgSPywAqwA8S1oBKAEsSslt8haIEsCS1LxmvQagBLAgJ6fZL4IpAUaWm8%2Biu0CUACMqyWXxbVBKgJGU5rHqfQBKgBHU5FAlwPxNk%2BhBYwJWncEpAlrR2n2ofhSCLRFa0MzZaYFlNYC2MybY02dsioBaZ%2B4smm1ZKAJytdhSN9%2BzUwTsaf06suuLVsoAkb43T%2F4FhmOag%2Fd0eDwAAAAASUVORK5CYII%3D%22%2C%20%22sizes%22%3A%20%22192x192%22%2C%20%22type%22%3A%20%22image%2Fpng%22%2C%20%22purpose%22%3A%20%22any%22%7D%2C%20%7B%22src%22%3A%20%22data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAVmUlEQVR4nO3dO46lx3kG4GqCgIyBAQLegAClBDPGjBVpE96AUnoBZuoNeBOOHE%2BsbKBUgDYgQIDRsKJ2QB%2FyTM%2B5%2FJe6ft%2FzpJSm%2F1vV%2B1b9p%2Fu8FKb0%2Bunj2%2BhjAKjhw3c%2FvIw%2BBr7kpgwk5AEUhFFc9A4EPcA%2BSkF7LnADAh%2BgLoWgPhe0EqEP0I9CcJ4LeJDAB5iDMnCMi7aD0AeYmzKwnQu1geAHWI8y8JiLc4fQB4hDGfiSC%2FKO4AeISxH4lQvx%2FwQ%2FQB6KQPICIPQBcstcBFKeuOAH4FrGIpDuhIU%2FAPdkKgJpTlTwA7BVhiIQ%2FgQFPwBHRS4CYU9M8ANQQ9QSEPKkhD8AtUUrAqFORvAD0FqUIvDV6AOoRfgD0EOUvFm%2BxUS5EQCsZ%2BXdgKV3AIQ%2FACOtnEPLFoCVLzoAcayaR8ttXax6oQGIb6VXAkvtAAh%2FAGa2Uk4tUwBWuqgA5LVKXk2%2FVbHKhQSAa7O%2FDpj64IQ%2FAKubtQhM%2BwpA%2BAMQwax5NmUBmPViAcARM%2BbadAVgxosEAGfNlm9TFYDZLg4A1DRTzk1TAGa6KADQyix5N0UBmOViAEAPM%2BTe8AIww0UAgN5G59%2FQAjD65AFgpJE5OKwACH8AGJeHQwqA8AeAX43Ixe4FQPgDwJd652PXAiD8AeC%2BnjnZrQAIfwCYx%2FBfAwQAftVrwdylAFj9A8B2PXKzeQEQ%2FgCwX%2Bv8bFoAhD8AHNcyR30GAAASalYArP4B4LxWedqkAAh%2FAKinRa5WLwDCHwDqq52vPgMAAAlVLQBW%2FwDQTs2crVYAhD8AtFcrb70CAICEqhQAq38A6KdG7p4uAMIfAPo7m79eAQBAQqcKgNU%2FAIxzJoftAABAQocLgNU%2FAIx3NI%2FtAABAQocKgNU%2FAMzjSC7vLgDCHwDW5xUAAASwd4G%2BqwBY%2FQNADHYAACCIPQt1BQAAEtpcAGz%2FA8D8tua1HQAASGhTAbD6B4B1bMltOwAAkNDTAmD1DwDreZbfdgAAICEFAAASelgAbP8DwLoe5bgdAABI6G4BsPoHgPXdy3M7AACQkAIAAAndLAC2%2FwEgjlu5bgcAABJSAAAgIQUAABL6ogB4%2Fw8A8bzPdzsAAJCQAgAACX1WAGz%2FA0Bc1zlvBwAAElIAACAhBQAAEvqlAHj%2FDwDxXfLeDgAAJKQAAEBCCgAAJKQAAEBCCgAAJPRSit8AAIBs7AAAQEIKAAAkpAAAQEIKAAAkpAAAQEIKAAAk9JVfAQSAfOwAAEBCCgAAJKQAAEBCCgAAJKQAAEBCCgAAJKQAAEBCCgAAJKQAAEBCCgAAJKQAAEBCCgAAJKQAAEBCCgAAJKQAQAMvr6OPIA7XEtpQAKAygVWfawr1KQBQ0XVQCa3zXE9oRwGASgRUe64x1KMAQAWCqR%2FXGupQAOAkgdSfaw7nKQBw0Mvr8yASVMdtubauLxynAMABgmce7gUcowDATgJnPu4J7KcAwA6CZl7uDeyjAMBGRwNGMO3nWkN7CgBsIFjW4V7BNgoAPCFQ1uOewXMKADwgSNbl3sFjCgDcUTNAhNF2rjv0oQDADYIjDvcSblMA4B2BEY97Cl9SAOCKoIjLvYXPKQBQ%2BvxdeQH0XI974D7AzxQA0hMI%2BbjnoACQnCDIy70nu69HHwCMEjEAWp%2FT24e2%2F35vL6%2Fxzgm2UgBIaVT4nw2c0aXl2c9f8dyUALJSAEhndIhuscIx3nLvuGcPWCWAjBQAUpkxWGc8ptpuneNsgasEkI0CQBqzBO0sxzHajNdBCSATvwVACjOGDXPyrJCFAkB4JnT28syQgQJAaCZyjvLsEJ0CQFgmcM7yDBGZDwESjkmbmi7Pkw8HEo0dAEIR%2FrTi2SIaBYAwTNC05hkjEgWAEEzM9OJZIwoFgOWZkOnNM0cECgBLMxEzimeP1SkALMsEzGieQVamALAkEy%2Bz8CyyKgWA5ZhwmY1nkhUpACzFRMusPJusRgFgGSZYZucZZSUKAEswsbIKzyqr8F0ATM1kyop8fwArsAPAtIQ%2Fq%2FMMMzMFgCmZOInCs8ysFACmY8IkGs80M1IAmIqJkqg828xGAWAaJkii84wzEwWAKZgYycKzziwUAIYzIZKNZ54ZKAAMZSIkK88%2BoykADGMCJDtjgJEUAIYw8cHPjAVGUQDozoQHnzMmGMF3AdCNSQ7u8%2F0B9GYHgC6EP2xjrNCLAkBzJjTYx5ihBwWApkxkcIyxQ2sKAM2YwOAcY4iWFACaMHFBHcYSrSgAVGfCgrqMKVpQAKjKRAVtGFvUpgBQjQkK2jLGqEkBoAoTE%2FRhrFGLAsBpJiToy5ijBgWAU0xEMIaxx1m%2BC4BDTD4wnu8P4Aw7AOwm%2FGEuxiRHKADsYqKBORmb7KUAsJkJBuZmjLKHAsAmJhZYg7HKVgoAT5lQYC3GLFsoADxkIoE1Gbs8owBwlwkE1mYM84gCwE0mDojBWOYeBYAvmDAgFmOaWxQAPmOigJiMbd5TAPiFCQJiM8a55rsAMClAIr4%2FgAs7AMkJf8jJ2EcBSMwEALmZA3JTAJIy8IFSzAWZKQAJGfDANXNCTgpAMgY6cIu5IR%2B%2FBZDMmU%2F%2BmiBgfj7dz1Z2AAAgIQWATaz%2BYQ3GKlspADxlQoG1GLNsoQAAQEIKAA9ZScCajF2eUQAAICEFgLusIGBtxjCPKADcZOKAGIxl7lEAACAhBYAvWDFALMY0tygAAJCQAsBnrBQgJmOb9xQAAEhIAeAXVggQmzHONQUAABJSACilWBlAFsY6FwoAACSkAGBFAMkY85SiAABASgpAclYCkJOxjwIAAAkpAACQkAKQmC1AyM0ckJsCAAAJKQBJaf5AKeaCzBQAAEhIAQCAhBSAhGz5AdfMCTkpAACQkAIAAAkpAMnY6gNuMTfkowAAQEIKAAAkpAAkYosPeMQckYsCAAAJKQAAkJACkIStPWALc0UeCgAAJPT16AOA2fzrT%2F9%2B97%2F954%2F%2F1vFI2Mu9g%2B1eXj99fBt9ELRnW%2B%2B5R%2BHxnjCZi3tX19uH0UdAD14BJCD8n9sTIEf%2B97Tj3tVnzsjBDkACBvN9NcLAinIM964tuwDx2QEAgIQUANKqtRVsS7k%2F9w7OUwCCs%2F1%2FW%2B2JX5D04971Ye6ITwEAgIQUANJpteKzkmzPvYN6FAAASEgBCMw7POAMc0hsCgAAJKQAAEBCCgAAJKQAAEBCCgDptPr77%2F6ufHvuHdSjAATl07tADeaSuBQAUqq94rOC7Me9gzoUANKqNfELkP7cOzhPAQCAhF5eP318G30Q1Oe93T5H%2Fha81eMc3Lv23j6MPgJasAMAZX8gCJB5uHdwjB2AoOwAHPdoRSk85ubetWEHICYFICgFAKhFAYjJKwAASEgBCMjqH6jJnBKTAgAACSkAAJCQAgAACSkAAJCQAgAACSkAAJCQAgAACSkAAJCQAgAACSkAAJCQAgAACSkAAJCQAgAACSkAAJCQAgAACSkAAJCQAgAACSkAAJCQAgAACSkAAJCQAgAACSkAAJCQAhDQ24fRRwBEYk6JSQEAgIQUAABISAEAgIQUAABISAEAgIQUAABISAEAgIQUAABISAEIyh%2FuAGowl8SlAABAQgoAACSkAABAQl%2BPPgCgvr%2F%2F%2BU9V%2F71vvv2%2B6r8HjKcAwKJqh%2FzRn6UcwJpeXj99fBt9ELTz8jr6CKihZ9jXoBTE4DcAYrMDABNaLfDfe3%2F8CgHMRwGASawe%2Bo9cn5syAHNQAGCgyKF%2FjzIAc%2FAZgAR8DmAuGUN%2FC2VgLt7%2Fx2cHADoR%2FI9dro8iAH0oANCY4N9HEYA%2BFABoRPCfowhAWz4DkITPAfQj%2BNtQBPrx%2Fj8HOwBQieBvy44A1OXLgKAC4d%2BPaw112AGAE4TRGHYD4Dw7AEl4p1ef8B%2FPPajPXJGHAgAHCJ55uBdwjFcATOkff%2F3Lj1v%2Bd7%2F57e9%2Ban0s14TNnEa9Epj1OYUt%2FBpgMrP%2BOuDWifSZlhOt8F9DyxKwwnN6hu3%2FXBSAZGYqALUm03tqTrLCfy01S8BKz%2BlZCkAuPgPAEK0n1Zo%2FQ%2Fivp9Y9W%2Bk5hb3sACQ0chdg1GR3dJUl%2FNd2dCdgtee0Bqv%2FfOwA0M3Ilc6Rny3813fkHq72nMJRCgBdzDCx7TkG4R%2FHnnu52nMKZygACfXe6ptpQpvpWJjLTM9G72Ox%2FZ%2BTAkBTM02qF8%2BOyeo%2Fnmf3dMXnFM5SAGhm5gns3rEJ%2F7ju3dsVn1OoQQFIqvWW3woT1%2FtjFP7xvb%2FHKz6ntdn%2Bz8ufAoZB%2FuO%2F%2Fvvhf%2F%2FjH37f6UjaynKesBp%2FByC5Fn8TYIVV1bXf%2FPZ3P%2FVa%2FT8Lw3tWC8nZz%2FObb79f8jmt%2FW9a%2FefmFQB0cjQUz%2F5%2Fe8tynrA6OwDJ1d4BWG1VdfG%2F%2F%2FO3Zn%2BBrXaozbobsNJ5%2FtM%2F%2F8uSz2ntXQA7ALnZAUjOBNBWixXtjKvkLOcZibGPAgCNtAywmcIxy3lCNAoAVgIN9AiuGcIxy3lGY8xTigIAACkpAJRSrAhq6rliHbk6znKe0RjrXCgAUNGIoPIzgSMUAH5hZQCxGeNcUwCoqsVfK2ut5d8AYE4r3vMVxxZzUwD4jBXCcd7Hx%2F7ZqzO2eU8BoLqVViorrgSpY6V7v9KYYh0KAF%2BwUoBYjGluUQBoYoUVy0orQNpY4RlYYSyxJgWAm2qsGGaeuFaY%2BOlj5mehxhiy%2BuceBYC7opaAGY%2BJsWZ8JoQ%2FrSkANDfT5DrTsTCXmZ6NmY6FuBQAHqq1gphhQpvhGJjbDM9IrWOw%2BucZBYBuRk6uPX72H%2F%2Fw%2B9Y%2FYoqfHf08oz%2BncPH16ANgfm8fSnl5rfNvXSa4f%2Fz1Lz%2FW%2BRe3%2FTzYY%2FXn1OqfLewAsEntCaVHMD%2F6Gd98%2B33rH88iHj0Lo5%2FTI4Q%2FW728fvr4NvogWEOtXYBbaq209kymf%2F%2Fzn2r8yC%2F0%2FnO1o7bko5znnjI44jndSwFgKwWAXVqWgGtbJ9ozE2mrAlBKv3Ac%2BT6%2BlBjneWY3qMdzuofwZw%2BfAWCXmp8HeMS7e1Yw03Mq%2FNnLZwBIq%2BXnAHqszEev%2Fnsdw6yrf1idAsBuVhrbtAyuGcL%2FIst5zsyY5AgFgEOiTDitV4AtAmzGUFzxPKOs%2FqOMRfrzIUAO6%2FWBwNZafhjw2tkPzM0Y%2FLescp4KANnZAeCwKBNPryA4E2yrhH8pa5yn8Ac7AFQQYSeg1y7AtWcr5ZVC%2F5EZzzNCARD%2BnKUAUIUSwCqEP%2FzMKwAASEgBoIoIK5IIK0Mei3CPI4w15qAAUE2EiSlCQHBbhHsbYYwxDwWAqiJMUBGCgs9FuKcRxhZzUQCozkQFdRlTtKAA0MTqE1aEFSM%2FW%2F1erj6WmJcCAHesHhy4h%2FCIAkAzEVYuAmRdEe5dhDHEvBQAmoowgUUIkmwi3LMIY4e5KQA0F2EiixAoWUS4VxHGDPNTAOgiwoQWIViii3CPIowV1uC7AOgqwncGlOJ7A2YTIfhLEf70ZQeArqJMcFECJ4Io9yLK2GAdCgDdRZnoogTPyqLcgyhjgrV4BcAwUV4HlOKVQG9Rgr8U4c84dgAYJtLEFymQZhfpWkcaA6zHDgDDRdoJKMVuQCuRgr8U4c94CgBTiFYCSlEEaokW%2FKUIf%2BagADCNiCWgFEXgqIjBX4rwZx4KAFOJWgJKUQS2ihr8pQh%2F5qIAMCVFIB%2FBD30pAEwrcgm4yF4GIof%2BhfBnVgoAU8tQAi6ylIEMoX8h%2FJmZAsD0MpWAi2hlIFPoXwh%2FZqcAsISMJeDaaoUgY%2BBfE%2F6sQAFgKdmLwLVZSkH2sL8m%2BFmJAsBylIDnapcDIf%2Bc8Gc1CgBLUgKYifBnRV%2BPPgA44jLhKgKMJPhZmW8DZGkmYEbx7LE6OwAsz24APQl%2BorADQBgmZlrzjBGJHQBCsRtAC4KfiOwAEJIJm1o8S0RlB4Cw7AZwhuAnOgWA8BQB9hD8ZOEVAGmY2HnGM0ImdgBIxW4Atwh%2BMlIASEkRoBTBT24KAKkpAjkJflAAoJSiCGQh%2BOFXCgBcUQRiEvzwJQUAbrgODGVgTUIfHlMA4Am7AmsR%2FLCNAgAb2RWYl9CH%2FRQAOMCuwBwEPxynAMAJdgX6E%2FpQhwIAlSgD7Qh9qE8BgAaUgfOEPrT1Ukopr58%2Bvo0%2BEMhCIbhN4ENfdgCgs%2FdBl7UQCHwYSwGAwW4FYbRSIOxhPgoATOheYM5eDAQ9rEMBgIU8C9jWBUHAQxwKAAQioIGtvhp9AABAfwoAACT0VSmlfPjuh5fRBwIA9PHhux9e7AAAQEIKAAAkpAAAQEIKAAAk9EsB8EFAAIjvkvd2AAAgIQUAABJSAAAgoc8KgM8BAEBc1zlvBwAAElIAACAhBQAAEvqiAPgcAADE8z7f7QAAQEIKAAAkdLMAeA0AAHHcynU7AACQkAIAAAndLQBeAwDA%2Bu7luR0AAEhIAQCAhB4WAK8BAGBdj3LcDgAAJKQAAEBAz3bxnxYArwEAIB47AACQ0KYCYBcAANaxJbftAABAQpsLgF0AAJjf1ry2AwAACe0qAHYBAGBee3LaDgAAJLS7ANgFAID57M1nOwAAkNChAmAXAADmcSSX7QAAQEKHC4BdAAAY72ge2wEAgIROFQC7AAAwzpkcPr0DoAQAQH9n89crAABIqEoBsAsAAP3UyF07AACwkFqL7moFwC4AAKyj6g6AEgAA7dTMWa8AAGABtRfZ1QuAXQAAmF%2BTHQAlAADqaZGrzV4BKAEAcF6rPPUZAACYVMvFdNMCYBcAAObUfAdACQCA%2FVrnZ5dXAEoAAGzXIze7fQZACQCA53rlpQ8BAsAkei6WuxYAuwAAMIfuOwBKAAB8qXc%2BDnkFoAQAwK9G5OKwzwAoAQAwLg%2BHfghQCQAgs5E5OPy3AJQAADIanX%2FDC0Ap4y8CAPQ0Q%2B5NUQBKmeNiAEBrs%2BTdNAWglHkuCgC0MFPOTVUASpnr4gBALbPl23QFoJT5LhIAnDFjrk13QNdeP318G30MAHDUjMF%2FMe2BXVMEAFjNzOFfyqSvAN6b%2FSICwLUVcmuJAlDKGhcTAFbJqyUO8prXAQDMaJXgv1jqYK8pAgDMYrXwL2WhVwDvrXixAYhn1Txa8qCv2QkAYIRVg%2F9i6YO%2FpggA0Mvq4V9KoAJQihIAQFsRgv8izIlcUwQAqC1S%2BJcStACUogQAUEe04L8IeVLXFAEAjooa%2FqUkKAAXigAAW0UO%2FovwJ%2FieIgDAPRmC%2FyLNib6nCABwkSn4L9Kd8HuKAEBeGYP%2FIu2Jv6cIAOSROfgv0l%2BA9xQBgLgE%2F69ciDsUAYAYhP5tLsoGygDAegT%2FYy7ODooAwNyE%2FnYu1EHKAMAchP4xLlolCgFAP0L%2FPBewAWUAoC6BX58L2oFCALCPwG%2FPBR5IMQAQ9qP8H2PtrLP%2Fc4C1AAAAAElFTkSuQmCC%22%2C%20%22sizes%22%3A%20%22512x512%22%2C%20%22type%22%3A%20%22image%2Fpng%22%2C%20%22purpose%22%3A%20%22any%22%7D%2C%20%7B%22src%22%3A%20%22data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAASNElEQVR4nO3dP47kyJnGYZbQgBaNBQbQBQTIHXcOIUuX2AvIHR1A4%2B4FdAlZa7ctryFXgC4gQMCisLJKRiNns6vzD5MZQUZ87%2FO4I1Uxi2R8P0ZmV728fv70tgAAUX5x9AEAAPsTAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAHTw8nr0EdThZwl9CABozMBqz88U2hMA0ND5oDK0nufnCf0IAGjEgOrPzxjaEQDQgMG0Hz9raEMAwJMMpP35mcPzBABs9PJ6fxAZVNut%2Bdn6%2BcJ2AgA2MHjG4VzANgIAHmTgjMc5gccJAHiAQTMu5wYeIwBgpa0DxmB6nJ819CcAYAWDZR7OFawjAOAOA2U%2BzhncJwDgBoNkXs4d3CYA4IqWA8QwWs%2FPHfYhAOACg6MO5xIuEwDwjoFRj3MK3xIAcMagqMu5ha8JAFj2%2Bb3yBtB9e5wD5wG%2BEADEMxDyOOcgAAhnEORy7kn34egDgKNUHAC9X9Pbx75ff28vr%2FVeE6wlAIh01PB%2FduAcHS33vv%2BMr00EkEoAEOfoIbrGDMd4ybXjHn3AigASCQCijDhYRzym1i69xtEGrgggjQAgxiiDdpTjONqIPwcRQBL%2FCoAIIw4bxuRaIYUAoDwLOo9yzZBAAFCahZytXDtUJwAoywLOs1xDVOZDgJRj0aal0%2FXkw4FUYweAUgx%2FenFtUY0AoAwLNL25xqhEAFCChZm9uNaoQgAwPQsye3PNUYEAYGoWYo7i2mN2AoBpWYA5mmuQmQkApmThZRSuRWYlAJiOBZfRuCaZkQBgKhZaRuXaZDYCgGlYYBmda5SZCACmYGFlFq5VZuFvATA0iykz8vcDmIEdAIZl%2BDM71zAjEwAMycJJFa5lRiUAGI4Fk2pc04xIADAUCyVVubYZjQBgGBZIqnONMxIBwBAsjKRwrTMKAcDhLIikcc0zAgHAoSyEpHLtczQBwGEsgKRzD3AkAcAhLHzwhXuBowgAdmfBg6%2B5JziCvwXAbixycJ2%2FH8De7ACwC8Mf1nGvsBcBQHcWNHiMe4Y9CAC6spDBNu4dehMAdGMBg%2Be4h%2BhJANCFhQvacC%2FRiwCgOQsWtOWeogcBQFMWKujDvUVrAoBmLFDQl3uMlgQATViYYB%2FuNVoRADzNggT7cs%2FRggDgKRYiOIZ7j2f5WwBsYvGB4%2Fn7ATzDDgAPM%2FxhLO5JthAAPMRCA2Nyb%2FIoAcBqFhgYm3uURwgAVrGwwBzcq6wlALjLggJzcc%2ByhgDgJgsJzMm9yz0CgKssIDA39zC3CAAusnBADe5lrhEAfMOCAbW4p7lEAPAVCwXU5N7mPQHAzywQUJt7nHP%2BFgAWBQji7wdwYgcgnOEPmdz7CIBgFgDIZg3IJgBCufGBZbEWJBMAgdzwwDlrQiYBEMaNDlxibcjjXwGEeeaTvxYIGJ9P97OWHQAACCQAWMXTP8zBvcpaAoC7LCgwF%2FcsawgAAAgkALjJkwTMyb3LPQIAAAIJAK7yBAFzcw9ziwDgIgsH1OBe5hoBAACBBADf8MQAtbinuUQAAEAgAcBXPClATe5t3hMAABBIAPAzTwhQm3uccwIAAAIJAJZl8WQAKdzrnAgAAAgkAPBEAGHc8yyLAACASAIgnCcByOTeRwAAQCABAACBBEAwW4CQzRqQTQAAQCABEEr5A8tiLUgmAAAgkAAAgEACIJAtP%2BCcNSGTAACAQAIAAAIJgDC2%2BoBLrA15BAAABBIAABBIAASxxQfcYo3IIgAAIJAAAIBAAiCErT1gDWtFDgEAAIE%2BHH0AMJr%2F%2BumPV%2F%2Fbn378w45HwqOcO1jv5fXzp7ejD4L%2BbOvdd2t4vGeYjMW5a%2Bvt49FHwB68BRDA8L%2FvkQGy5X9PP85de9aMDHYAAriZr2sxDDxRHsO568suQH12AAAgkAAgVqutYFvK%2B3Pu4HkCoDjb%2F5e1XvgNkv04d%2FuwdtQnAAAgkAAgTq8nPk%2BS%2FTl30I4AAIBAAqAw7%2BEBz7CG1CYAACCQAACAQAIAAAIJAAAIJACI0%2Bv3v%2Fu98v05d9COACjKp3eBFqwldQkAIrV%2B4vMEuR%2FnDtoQAMRqtfAbIPtz7uB5AgAAAr28fv70dvRB0J737R6z5XfBe3ocg3PX39vHo4%2BAHuwAwPL4QDBAxuHcwTZ2AIqyA7DdrSdKw2Nszl0fdgBqEgBFCQCgFQFQk7cAACCQACjI0z%2FQkjWlJgEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIABb19PPoIgEqsKTUJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCYCi%2FOIOoAVrSV0CAAACCQAACCQAACDQh6MPAGjvn3%2F9S9Ov9933PzT9esDxBABMqvWQ3%2Fq9xAHM6eX186e3ow%2BCfl5ejz4CWthz2LcgCmrwLwBqswMAA5pt4L%2F3%2FvgFAYxHAMAgZh%2F6t5y%2FNjEAYxAAcKDKQ%2F8aMQBj8BmAAD4HMJbEob%2BGGBiL9%2F%2FrswMAOzH4bzv9fIQA7EMAQGcG%2F2OEAOxDAEAnBv9zhAD05TMAIXwOYD8Gfx9CYD%2Fe%2F89gBwAaMfj7siMAbfljQNCA4b8fP2toww4APMEwOobdAHieHYAQ3tNrz%2FA%2FnnPQnrUihwCADQyecTgXsI23ABjSv%2F7%2Btx%2FX%2FO9%2B%2Bevf%2FNT7WM4ZNmM66i2BUa9TWMM%2FAwwz6j8HXLuQ3tNzoTX859AzAma4Tp9h%2Bz%2BLAAgzUgC0WkyvabnIGv5zaRkBM12nzxIAWXwGgEP0XlRbfg%2FDfz6tztlM1yk8yg5AoCN3AY5a7LY%2BZRn%2Bc9u6EzDbddqCp%2F88dgDYzZFPOlu%2Bt%2BE%2Fvy3ncLbrFLYSAOxihIXtkWMw%2FOt45FzOdp3CMwRAoL23%2BkZa0EY6FsYy0rWx97HY%2Fs8kAOhqpEX15N4xefqv5945nfE6hWcJALoZeQG7dmyGf13Xzu2M1ym0IABC9d7ym2Hhen%2BMhn9978%2FxjNdpa7b%2Fc%2FlVwHCQ%2F%2F7z%2F9z877%2F%2F3W93OpK%2BUl4nzMbvAQjX43cCzPBUde6Xv%2F7NT3s9%2Fd8bhtfMNiRHf53fff%2FDlNdp66%2Fp6T%2BbtwBgJ1uH4rP%2F372lvE6YnR2AcK13AGZ7qjr5v%2F%2F9R7ffwNZ6qI26GzDT6%2FyP%2F%2FzVlNdp610AOwDZ7ACEswD01eOJdsSn5JTXWYl7HwEAnfQcYCMNx5TXCdUIADwJdLDH4BphOKa8zmrc8yyLAACASAKAZVk8EbS05xPrkU%2FHKa%2BzGvc6JwIAGjpiUPmewBYCgJ95MoDa3OOcEwA01eO3lfXW83cAMKYZz%2FmM9xZjEwB8xRPCdt6Pr%2F29Z%2Bfe5j0BQHMzPanM%2BCRIGzOd%2B5nuKeYhAPiGJwWoxT3NJQKALmZ4YpnpCZA%2BZrgGZriXmJMA4KIWTwwjL1wzLPzsY%2BRrocU95OmfawQAV1WNgBGPiWONeE0Y%2FvQmAOhupMV1pGNhLCNdGyMdC3UJAG5q9QQxwoI2wjEwthGukVbH4OmfewQAuzlycd3je%2F%2F%2Bd7%2Ft%2FS2G%2BN7VX2f16xROPhx9AIzv7eOyvLy2%2BVqnBe5ff%2F%2Fbj22%2B4rrvB4%2BY%2FTr19M8adgBYpfWCssdgvvU9vvv%2Bh97fnkncuhaOvk63MPxZ6%2BX186e3ow%2BCObTaBbik1ZPWI4vpP%2F%2F6lxbf8ht7%2F7rao7bkq7zOR2LwiOv0UQKAtQQAD%2BkZAefWLrTPLKS9AmBZ9huOR74fvyw1Xuczu0F7XKePMPx5hM8A8JCWnwe4xXv3zGCk69Tw51E%2BA0Csnp8D2OPJ%2FOin%2F72OYdSnf5idAOBhnjTW6Tm4Rhj%2BJymvc2TuSbYQAGxSZcHp%2FQTYY4CNOBRnfJ1Vnv6r3Ivsz4cA2WyvDwT21vPDgOee%2FcDciIP%2FkllepwAgnR0ANquy8Ow1CJ4ZbLMM%2F2WZ43Ua%2FmAHgAYq7ATstQtw7t6T8kxD%2F5YRX2eFADD8eZYAoAkRwCwMf%2FjCWwAAEEgA0ESFJ5IKT4bcVuEcV7jXGIMAoJkKC1OFAcFlFc5thXuMcQgAmqqwQFUYFHytwjmtcG8xFgFAcxYqaMs9RQ8CgC5mX7AqPDHyxezncvZ7iXEJALhi9sGBcwi3CAC6qfDkYoDMq8K5q3APMS4BQFcVFrAKgyRNhXNW4d5hbAKA7iosZBUGSooK56rCPcP4BAC7qLCgVRgs1VU4RxXuFebgbwGwqwp%2FM2BZ%2FN2A0VQY%2FMti%2BLMvOwDsqsoCV2XgVFDlXFS5N5iHAGB3VRa6KoNnZlXOQZV7grl4C4DDVHk7YFm8JbC3KoN%2FWQx%2FjmMHgMNUWvgqDaTRVfpZV7oHmI8dAA5XaSdgWewG9FJp8C%2BL4c%2FxBABDqBYByyIEWqk2%2BJfF8GcMAoBhVIyAZRECW1Uc%2FMti%2BDMOAcBQqkbAsgiBtaoO%2FmUx%2FBmLAGBIQiCPwQ%2F7EgAMq3IEnKTHQOWhf2L4MyoBwNASIuAkJQYShv6J4c%2FIBADDS4qAk2oxkDT0Twx%2FRicAmEJiBJybLQgSB%2F45w58ZCACmkh4C50aJgvRhf87gZyYCgOmIgPtax4Ehf5%2Fhz2wEAFMSAYzE8GdGH44%2BANjitOAKAY5k8DMzfw2QqVmAOYprj9nZAWB6dgPYk8FPFXYAKMPCTG%2BuMSqxA0ApdgPoweCnIjsAlGTBphXXElXZAaAsuwE8w%2BCnOgFAeUKARxj8pPAWADEs7NzjGiGJHQCi2A3gEoOfRAKASEKAZTH4ySYAiCYEMhn8IABgWRYhkMLgh%2F8nAOCMEKjJ4IdvCQC44HxgiIE5GfpwmwCAO%2BwKzMXgh3UEAKxkV2Bchj48TgDABnYFxmDww3YCAJ5gV2B%2Fhj60IQCgETHQj6EP7QkA6EAMPM%2FQh74EAHT2fpAJgssMfNiXAICdCYIvDHw4lgCAg10ahNWiwLCH8QgAGNC1gTl6GBj0MA8BABO5N2B7B4IBD3UIACjEgAbW%2BsXRBwAA7E8AAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAE%2BjdYGJyUw%2FBYrwAAAABJRU5ErkJggg%3D%3D%22%2C%20%22sizes%22%3A%20%22512x512%22%2C%20%22type%22%3A%20%22image%2Fpng%22%2C%20%22purpose%22%3A%20%22maskable%22%7D%5D%7D" />
+  <style>/* ===== 米色 iOS 风格 全局 ===== */
+:root{
+  --bg:#F3EDE2;
+  --bg2:#EFE7D8;
+  --card:#FFFDF8;
+  --card-soft:#FBF6EC;
+  --ink:#5A5048;
+  --ink-soft:#9A8E80;
+  --line:#ECE3D3;
+  --peach:#E9B7A0;
+  --peach-deep:#D89A7E;
+  --sage:#A9C0A0;
+  --pink:#F2C6C2;
+  --gold:#E6C277;
+  --blue:#A9C4DD;
+  --shadow:0 6px 22px rgba(155,134,108,.16);
+  --shadow-sm:0 2px 10px rgba(155,134,108,.12);
+  --radius:20px;
+  --radius-sm:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Helvetica Neue","Segoe UI",sans-serif;
+  background:linear-gradient(160deg,var(--bg),var(--bg2));
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+  overflow:hidden;
+}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+input,textarea,select{font-family:inherit;color:var(--ink);}
+
+.app{display:flex;height:100vh;}
+
+/* ===== 侧边栏 ===== */
+.sidebar{
+  width:228px;flex-shrink:0;
+  background:rgba(255,253,248,.72);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-right:1px solid var(--line);
+  display:flex;flex-direction:column;
+  padding:18px 14px;
+}
+.brand{
+  display:flex;align-items:center;gap:10px;
+  padding:10px 12px;margin-bottom:14px;
+  background:var(--card);border-radius:var(--radius-sm);
+  box-shadow:var(--shadow-sm);cursor:pointer;transition:.2s;
+}
+.brand:hover{transform:translateY(-1px);}
+.brand-logo{font-size:26px;filter:drop-shadow(0 2px 4px rgba(0,0,0,.1));}
+.brand-text{font-weight:700;font-size:15px;line-height:1.15;color:var(--peach-deep);}
+
+.nav{display:flex;flex-direction:column;gap:6px;flex:1;overflow-y:auto;}
+.nav-item{
+  display:flex;align-items:center;gap:12px;
+  padding:11px 13px;border-radius:14px;
+  font-size:14.5px;font-weight:600;color:var(--ink);
+  transition:.18s;position:relative;
+}
+.nav-item .nav-ico{
+  width:34px;height:34px;flex-shrink:0;border-radius:11px;
+  display:grid;place-items:center;font-size:19px;
+  background:var(--card-soft);box-shadow:inset 0 0 0 1px var(--line);
+}
+.nav-item:hover{background:var(--card);}
+.nav-item.active{background:var(--card);box-shadow:var(--shadow-sm);color:var(--peach-deep);}
+.nav-item.active .nav-ico{background:linear-gradient(145deg,#FBE3D6,#F6D3C2);box-shadow:0 3px 8px rgba(216,154,126,.3);}
+.nav-item .nav-label{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.nav-badge{
+  position:absolute;top:6px;right:8px;min-width:16px;height:16px;padding:0 4px;
+  background:var(--pink);color:#fff;border-radius:9px;font-size:10px;font-weight:700;
+  display:grid;place-items:center;
+}
+.sidebar-footer{margin-top:10px;padding-top:12px;border-top:1px solid var(--line);}
+.data-tip{font-size:11.5px;color:var(--ink-soft);text-align:center;}
+
+/* ===== 主区 ===== */
+.main{flex:1;display:flex;flex-direction:column;min-width:0;}
+.topbar{
+  display:flex;align-items:center;gap:14px;
+  padding:18px 28px;
+}
+.topbar-title{font-size:22px;font-weight:750;color:var(--ink);}
+.topbar-sub{font-size:13px;color:var(--ink-soft);}
+.topbar-actions{margin-left:auto;display:flex;gap:8px;}
+.icon-btn{
+  padding:8px 13px;border-radius:12px;font-size:13px;font-weight:600;
+  background:var(--card);box-shadow:var(--shadow-sm);transition:.18s;
+}
+.icon-btn:hover{transform:translateY(-1px);box-shadow:var(--shadow);}
+
+.content{flex:1;overflow-y:auto;padding:6px 28px 36px;}
+
+/* ===== 桌面首页 ===== */
+.home-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:20px;margin-top:8px;}
+.home-card{
+  background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);
+  padding:24px;
+}
+.clock-card{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;}
+.clock-time{font-size:62px;font-weight:800;letter-spacing:1px;color:var(--peach-deep);font-variant-numeric:tabular-nums;}
+.clock-date{font-size:15px;color:var(--ink-soft);margin-top:6px;}
+.clock-week{font-size:13px;color:var(--ink-soft);margin-top:2px;}
+.checkin-area{margin-top:18px;display:flex;flex-direction:column;align-items:center;gap:10px;}
+.checkin-btn{
+  padding:12px 26px;border-radius:16px;font-size:15px;font-weight:700;color:#fff;
+  background:linear-gradient(145deg,var(--peach),var(--peach-deep));
+  box-shadow:0 6px 16px rgba(216,154,126,.4);transition:.2s;
+}
+.checkin-btn:hover{transform:translateY(-2px);}
+.checkin-btn.done{background:linear-gradient(145deg,var(--sage),#8Fae84);box-shadow:0 6px 16px rgba(143,174,132,.4);}
+.streak{font-size:13px;color:var(--ink-soft);}
+.streak b{color:var(--peach-deep);font-size:15px;}
+
+.quote-card{display:flex;flex-direction:column;justify-content:center;}
+.quote-tag{font-size:12px;color:var(--ink-soft);letter-spacing:2px;margin-bottom:10px;}
+.quote-zh{font-size:24px;font-weight:750;line-height:1.4;color:var(--ink);}
+.quote-en{font-size:15px;color:var(--ink-soft);margin-top:12px;font-style:italic;line-height:1.5;}
+.quote-change{margin-top:16px;align-self:flex-start;font-size:12px;color:var(--peach-deep);font-weight:600;}
+
+.home-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:20px;}
+.stat{
+  background:var(--card);border-radius:var(--radius-sm);box-shadow:var(--shadow-sm);
+  padding:16px;text-align:center;
+}
+.stat .stat-ico{font-size:24px;}
+.stat .stat-num{font-size:26px;font-weight:800;color:var(--peach-deep);margin-top:6px;}
+.stat .stat-label{font-size:12px;color:var(--ink-soft);margin-top:2px;}
+
+.upcoming{margin-top:20px;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px 24px;}
+.upcoming h3{font-size:16px;margin-bottom:12px;color:var(--ink);}
+.upcoming-item{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);}
+.upcoming-item:last-child{border-bottom:none;}
+.upcoming-item .ui-ico{font-size:20px;}
+.upcoming-item .ui-name{flex:1;font-weight:600;}
+.upcoming-item .ui-days{font-size:13px;color:var(--peach-deep);font-weight:700;}
+
+/* ===== 模块网格 ===== */
+.module-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:20px;margin-top:8px;}
+.module{
+  background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);
+  padding:20px 22px;display:flex;flex-direction:column;min-height:200px;
+}
+.module-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.module-head .m-ico{font-size:22px;}
+.module-head h2{font-size:17px;font-weight:750;}
+.module-head .m-tag{margin-left:auto;font-size:11px;color:var(--ink-soft);background:var(--card-soft);padding:3px 9px;border-radius:9px;}
+
+/* 通用小组件 */
+.field{display:flex;gap:8px;margin-bottom:10px;}
+.field input,.field textarea,.field select{
+  flex:1;border:1px solid var(--line);background:var(--card-soft);
+  border-radius:11px;padding:10px 12px;font-size:14px;outline:none;transition:.15s;
+}
+.field input:focus,.field textarea:focus{border-color:var(--peach);background:#fff;}
+.btn{
+  padding:10px 16px;border-radius:11px;font-size:13.5px;font-weight:700;color:#fff;
+  background:linear-gradient(145deg,var(--peach),var(--peach-deep));white-space:nowrap;transition:.18s;
+}
+.btn:hover{transform:translateY(-1px);}
+.btn.ghost{background:var(--card-soft);color:var(--ink);box-shadow:inset 0 0 0 1px var(--line);}
+.btn.sage{background:linear-gradient(145deg,var(--sage),#8Fae84);}
+.btn.sm{padding:7px 12px;font-size:12.5px;}
+
+.list{margin-top:6px;display:flex;flex-direction:column;gap:8px;overflow-y:auto;flex:1;}
+.row{
+  display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;
+  background:var(--card-soft);transition:.15s;
+}
+.row:hover{background:#fff;}
+.row .row-main{flex:1;min-width:0;}
+.row .row-title{font-weight:600;font-size:14px;}
+.row .row-sub{font-size:12px;color:var(--ink-soft);margin-top:2px;}
+.row .row-del{color:var(--ink-soft);font-size:18px;padding:2px 8px;border-radius:8px;}
+.row .row-del:hover{color:#D9694E;background:rgba(217,105,78,.1);}
+.row .row-edit{color:var(--ink-soft);font-size:15px;padding:2px 8px;border-radius:8px;}
+.row .row-edit:hover{color:var(--peach-deep);background:rgba(216,154,126,.12);}
+.empty{color:var(--ink-soft);font-size:13px;text-align:center;padding:24px 0;}
+
+/* 搜索框（收纳记录专用） */
+.search-box{display:flex;gap:8px;margin-bottom:6px;position:sticky;top:0;z-index:2;}
+.search-box input{flex:1;border:1px solid var(--line);background:#fff;border-radius:12px;padding:11px 14px;font-size:14px;outline:none;box-shadow:var(--shadow-sm);}
+.search-box input:focus{border-color:var(--peach);}
+.search-result{
+  margin:8px 0;padding:12px 14px;border-radius:12px;font-size:14px;
+  background:linear-gradient(145deg,#FBEFE2,#F7E4D2);border:1px dashed var(--peach-deep);
+}
+.search-result b{color:var(--peach-deep);}
+.search-result.none{background:var(--card-soft);border:1px dashed var(--line);color:var(--ink-soft);}
+
+/* 打卡清单 */
+.check-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px;}
+.check-item{
+  display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:13px;
+  background:var(--card-soft);cursor:pointer;transition:.15s;user-select:none;
+}
+.check-item:hover{background:#fff;}
+.check-item .box{
+  width:24px;height:24px;border-radius:8px;border:2px solid var(--peach);flex-shrink:0;
+  display:grid;place-items:center;font-size:15px;color:#fff;background:transparent;transition:.15s;
+}
+.check-item.on .box{background:var(--peach);}
+.check-item.on .ci-text{color:var(--ink-soft);text-decoration:line-through;}
+.ci-text{font-size:14px;font-weight:600;}
+
+/* 体重图表 */
+.chart{width:100%;height:150px;margin-top:8px;}
+.weight-inputs{display:flex;gap:8px;margin-bottom:8px;}
+.weight-stat{display:flex;gap:18px;margin-top:10px;font-size:13px;color:var(--ink-soft);}
+.weight-stat b{color:var(--peach-deep);font-size:16px;}
+
+/* 日期模块 */
+.date-grid{display:flex;flex-direction:column;gap:8px;}
+
+/* 积分 */
+.points-big{font-size:40px;font-weight:800;color:var(--gold);text-align:center;margin:8px 0;}
+.points-actions{display:flex;gap:8px;justify-content:center;margin-top:8px;}
+
+/* 加密 */
+.secure-lock{text-align:center;padding:10px 0;}
+.secure-lock input{width:100%;border:1px solid var(--line);background:var(--card-soft);border-radius:11px;padding:11px 12px;font-size:14px;outline:none;margin:8px 0;text-align:center;}
+.secure-body textarea{width:100%;min-height:140px;border:1px solid var(--line);background:var(--card-soft);border-radius:12px;padding:12px;font-size:14px;outline:none;resize:vertical;}
+
+/* 弹窗 */
+.modal-mask{position:fixed;inset:0;background:rgba(90,80,72,.35);backdrop-filter:blur(4px);display:grid;place-items:center;z-index:99;}
+.modal-mask[hidden]{display:none;}
+.modal{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;width:min(440px,92vw);max-height:86vh;overflow-y:auto;}
+.modal h3{font-size:18px;margin-bottom:14px;}
+.modal .field{flex-direction:column;gap:6px;}
+.modal label{font-size:13px;color:var(--ink-soft);}
+
+/* ===== 手作专区 ===== */
+.craft-cats{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:6px;}
+.craft-cat{display:flex;align-items:center;gap:12px;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px;cursor:pointer;transition:.18s;}
+.craft-cat:hover{transform:translateY(-2px);}
+.cc-ico{font-size:34px;line-height:1;}
+.cc-body{flex:1;min-width:0;}
+.cc-name{font-size:16px;font-weight:750;color:var(--ink);}
+.cc-desc{font-size:12.5px;color:var(--ink-soft);margin-top:2px;}
+.cc-count{font-size:12px;color:var(--peach-deep);font-weight:700;background:var(--card-soft);padding:4px 10px;border-radius:20px;white-space:nowrap;}
+.craft-head{display:flex;align-items:center;gap:10px;margin:4px 0 14px;}
+.craft-head-title{font-size:17px;font-weight:750;flex:1;}
+.craft-parse{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px;margin-top:22px;}
+.craft-tip{font-size:12.5px;color:var(--ink-soft);margin:6px 0 12px;line-height:1.6;}
+.parse-msg{font-size:13px;color:var(--peach-deep);min-height:18px;margin:8px 0;}
+.parse-msg:empty{margin:0;}
+.parse-result{margin-top:4px;}
+.pr-row{display:flex;gap:10px;align-items:baseline;margin-bottom:8px;}
+.pr-k{font-size:12.5px;color:var(--ink-soft);min-width:64px;flex-shrink:0;}
+.pr-v{font-size:15px;font-weight:700;color:var(--ink);}
+.pr-block{margin:12px 0;}
+.pr-list{margin:6px 0 0;padding-left:20px;font-size:13.5px;color:var(--ink);line-height:1.8;}
+.pr-list li{margin-bottom:2px;}
+.pr-list .empty{list-style:none;margin-left:-20px;color:var(--ink-soft);}
+/* 三段式按钮：取消 / 添加 / 编辑 */
+.tri-actions{display:flex;justify-content:space-between;gap:10px;margin-top:18px;}
+.tri-actions .btn{flex:1;}
+.btn.outline{background:#fff;border:1.5px solid var(--peach);color:var(--peach-deep);box-shadow:none;}
+.btn.outline:hover{background:var(--card-soft);}
+/* 分段选择（食品 / 手工） */
+.seg{display:flex;gap:8px;}
+.seg-btn{flex:1;padding:9px;border-radius:12px;border:1.5px solid var(--line);background:var(--card-soft);font-size:13.5px;font-weight:600;color:var(--ink-soft);cursor:pointer;transition:.15s;}
+.seg-btn.on{background:linear-gradient(145deg,#FBE3D6,#F6D3C2);border-color:var(--peach);color:var(--peach-deep);}
+/* 键值行（材料 / 步骤编辑） */
+.kv-row{display:flex;gap:8px;align-items:center;margin-bottom:8px;}
+.kv-row input.kv-k{flex:1 1 auto;min-width:0;}
+.kv-row input.kv-v{flex:0 0 108px;width:108px;}
+.kv-row input.kv-k.wide{flex:1 1 auto;}
+.kv-del{flex:0 0 30px;width:30px;height:30px;border-radius:9px;border:none;background:var(--card-soft);color:#C98A78;font-size:14px;cursor:pointer;}
+.kv-del:hover{background:#f3d9cf;}
+.modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:16px;}
+
+/* 滚动条 */
+::-webkit-scrollbar{width:8px;height:8px;}
+::-webkit-scrollbar-thumb{background:var(--line);border-radius:8px;}
+::-webkit-scrollbar-thumb:hover{background:var(--peach);}
+
+/* ===== 移动端：抽屉式导航 ===== */
+.hamburger{display:none;font-size:20px;line-height:1;padding:8px 12px;border-radius:11px;background:var(--card);box-shadow:var(--shadow-sm);margin-right:6px;}
+.sidebar-mask{display:none;}
+
+/* ===== 桌面小组件 ===== */
+.widget-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:18px;margin-top:20px;}
+.widget{
+  background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);
+  padding:18px 20px;display:flex;flex-direction:column;min-height:140px;
+}
+.widget.wide{grid-column:1 / -1;}
+.w-head{font-size:15px;font-weight:750;margin-bottom:12px;color:var(--ink);}
+.w-sub{font-size:12.5px;color:var(--ink-soft);margin-top:10px;}
+
+/* 今日心情 */
+.mood-row{display:flex;gap:8px;justify-content:space-between;}
+.mood-btn{font-size:24px;padding:6px;border-radius:12px;background:var(--card-soft);transition:.15s;line-height:1;}
+.mood-btn:hover{transform:translateY(-2px);background:#fff;}
+.mood-btn.on{background:linear-gradient(145deg,#FBE3D6,#F6D3C2);box-shadow:0 3px 8px rgba(216,154,126,.3);transform:translateY(-2px);}
+
+/* 喝水打卡 */
+.water-num{font-size:15px;color:var(--ink-soft);}
+.water-num b{font-size:28px;font-weight:800;color:var(--blue);}
+.water-bar{height:12px;border-radius:8px;background:var(--card-soft);overflow:hidden;margin:12px 0;}
+.water-fill{height:100%;border-radius:8px;background:linear-gradient(90deg,#Bcd8ee,#A9C4DD);transition:width .3s;}
+.water-btns{display:flex;gap:8px;margin-top:auto;}
+.water-btns .btn{flex:1;}
+
+/* 快捷操作 */
+.quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+.quick-btn{
+  display:flex;align-items:center;gap:6px;justify-content:center;
+  padding:12px 8px;border-radius:13px;background:var(--card-soft);
+  font-size:13.5px;font-weight:600;transition:.15s;
+}
+.quick-btn:hover{background:#fff;transform:translateY(-1px);box-shadow:var(--shadow-sm);}
+
+/* 今日打卡总览 */
+.check-overview{display:flex;flex-direction:column;gap:12px;}
+.co-row{display:flex;align-items:center;gap:12px;}
+.co-ico{font-size:18px;}
+.co-name{width:84px;font-size:13.5px;font-weight:600;flex-shrink:0;}
+.co-bar{flex:1;height:10px;border-radius:6px;background:var(--card-soft);overflow:hidden;}
+.co-fill{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,var(--sage),#8Fae84);transition:width .3s;}
+.co-num{font-size:13px;color:var(--ink-soft);font-weight:700;width:42px;text-align:right;}
+
+/* 迷你月历 */
+.cal-wk{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:6px;}
+.cal-wk span{text-align:center;font-size:11px;color:var(--ink-soft);}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;}
+.cal-cell{position:relative;text-align:center;font-size:12.5px;padding:7px 0;border-radius:9px;color:var(--ink);}
+.cal-cell.empty{visibility:hidden;}
+.cal-cell.today{background:linear-gradient(145deg,#FBE3D6,#F6D3C2);color:var(--peach-deep);font-weight:800;}
+.cal-cell.ev{font-weight:700;}
+.cal-cell .dot{position:absolute;bottom:3px;left:50%;transform:translateX(-50%);width:5px;height:5px;border-radius:50%;background:var(--pink);}
+
+@media(max-width:768px){
+  .hamburger{display:inline-block;}
+  /* 侧栏变抽屉 */
+  .sidebar{
+    position:fixed;left:0;top:0;bottom:0;width:250px;z-index:50;
+    transform:translateX(-100%);transition:transform .25s ease;
+    border-right:none;box-shadow:none;
+  }
+  .sidebar.open{transform:translateX(0);box-shadow:0 8px 28px rgba(0,0,0,.18);}
+  .sidebar-mask{display:block;position:fixed;inset:0;background:rgba(90,80,72,.4);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);z-index:49;opacity:0;pointer-events:none;transition:opacity .2s;}
+  .sidebar.open ~ .sidebar-mask{opacity:1;pointer-events:auto;}
+  .main{width:100%;}
+  /* 顶栏紧凑 */
+  .topbar{padding:12px 14px;flex-wrap:wrap;gap:8px;}
+  .topbar-title{font-size:17px;}
+  .topbar-sub{display:none;}
+  .topbar-actions{gap:6px;}
+  .icon-btn{padding:6px 10px;font-size:12px;}
+  .content{padding:6px 14px 28px;}
+  /* 桌面卡片 */
+  .home-grid{grid-template-columns:1fr;gap:14px;}
+  .home-card{padding:20px;}
+  .clock-time{font-size:48px;}
+  .quote-zh{font-size:20px;}
+  .quote-en{font-size:13px;}
+  .home-stats{grid-template-columns:repeat(2,1fr);gap:10px;}
+  .stat{padding:14px 8px;}
+  .stat .stat-num{font-size:22px;}
+  /* 小组件/模块 */
+  .widget-grid{grid-template-columns:1fr;gap:14px;}
+  .module-grid{grid-template-columns:1fr;gap:14px;}
+  .widget,.module{padding:16px 18px;}
+  .quick-grid{grid-template-columns:1fr 1fr;}
+  .co-name{width:72px;font-size:13px;}
+  /* 手作专区 */
+  .craft-cats{grid-template-columns:1fr;}
+  .craft-cat{padding:16px 18px;}
+  .tri-actions{margin-top:16px;}
+  .tri-actions .btn{padding:9px 4px;font-size:13px;}
+  /* 月历/弹窗 */
+  .modal{width:min(420px,94vw);padding:18px;}
+  .upcoming-item{padding:10px 0;}
+}
+@media(max-width:380px){
+  .topbar-actions{flex-wrap:wrap;}
+  .clock-time{font-size:40px;}
+}
+</style>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand" id="brandBtn" title="返回桌面">
+        <div class="brand-logo">🌟</div>
+        <div class="brand-text">我的<br/>工作台</div>
+      </div>
+      <nav class="nav" id="nav"></nav>
+      <div class="sidebar-footer"><div class="data-tip">📦 数据本地留存</div></div>
+    </aside>
+    <div class="sidebar-mask" id="sidebarMask"></div>
+    <main class="main">
+      <header class="topbar">
+        <button class="hamburger" id="menuBtn" title="菜单">☰</button>
+        <div class="topbar-title" id="topTitle">桌面</div>
+        <div class="topbar-sub" id="topSub"></div>
+        <div class="topbar-actions">
+          <button class="icon-btn" id="resetTodayBtn" title="清空今日打卡/记录">🔄 今日重置</button>
+          <button class="icon-btn" id="exportBtn" title="导出全部数据">💾 备份</button>
+          <button class="icon-btn" id="importBtn" title="导入数据">📥 恢复</button>
+          <input type="file" id="importFile" accept="application/json" hidden />
+        </div>
+      </header>
+      <section class="content" id="content"></section>
+    </main>
+  </div>
+  <div class="modal-mask" id="modalMask" hidden><div class="modal" id="modal"></div></div>
+  <script>/* ========================================================================
+   我的专属工作台  —  纯前端 / 本地存储 / 米色 iOS 风格
+   所有数据保存在浏览器 localStorage，不上传任何服务器。
+   ======================================================================== */
+(function () {
+  'use strict';
+
+  const STORE_KEY = 'myWorkbench.v1';
+  const todayStr = () => new Date().toISOString().slice(0, 10);
+
+  /* ---------- 存储层 ---------- */
+  let DB = load();
+  function load() {
+    try {
+      const raw = localStorage.getItem(STORE_KEY);
+      if (raw) return JSON.parse(raw);
+    } catch (e) { }
+    return { checkin: {}, modules: {}, quotes: {} };
+  }
+  function save() {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(DB)); } catch (e) { alert('保存失败：' + e.message); }
+  }
+  const M = (id, def) => {
+    if (!DB.modules[id]) DB.modules[id] = def || {};
+    else if (def) for (const k in def) if (!(k in DB.modules[id])) DB.modules[id][k] = def[k]; // 仅补齐缺失字段，不覆盖已有数据
+    return DB.modules[id];
+  };
+  const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+
+  /* ---------- 每日激励语（每天自动更新） ---------- */
+  const QUOTES = [
+    { zh: '今天也要元气满满地爱自己呀！', en: 'Shine bright and be kind to yourself today.' },
+    { zh: '小小的坚持，会变成大大的奇迹。', en: 'Small consistency becomes a big miracle.' },
+    { zh: '你比昨天的自己更棒一点点。', en: 'You are a little better than yesterday.' },
+    { zh: '把日子过成喜欢的样子。', en: 'Shape your days into the life you love.' },
+    { zh: '慢慢来，比较快。', en: 'Slow down — that is actually faster.' },
+    { zh: '认真生活的人，会被生活温柔以待。', en: 'Those who live with care are treated gently.' },
+    { zh: '今天的努力，是明天的礼物。', en: 'Today’s effort is tomorrow’s gift.' },
+    { zh: '保持热爱，奔赴山海。', en: 'Keep the passion, and head for the mountains and seas.' },
+    { zh: '你值得世间所有的美好。', en: 'You deserve all the beauty in the world.' },
+    { zh: '把平凡的一天，过得闪闪发光。', en: 'Make an ordinary day sparkle.' },
+    { zh: '呼吸放慢，烦恼就小了。', en: 'Slow your breath and worries shrink.' },
+    { zh: '每一步都算数。', en: 'Every single step counts.' },
+    { zh: '温柔且有力量，是最好模样。', en: 'Gentle yet strong is the best version of you.' },
+    { zh: '今天也要好好吃饭、好好睡觉。', en: 'Eat well and sleep well today.' },
+    { zh: '开心不是目标，是生活方式。', en: 'Happiness is not a goal but a way of living.' },
+    { zh: '你正在成为想要成为的人。', en: 'You are becoming who you want to be.' },
+    { zh: '世界很忙，记得留点给自己。', en: 'The world is busy — save some time for yourself.' },
+    { zh: '种一棵树最好的时间是现在。', en: 'The best time to plant a tree is now.' },
+    { zh: '不慌不忙，自有光芒。', en: 'Take your time — your light is yours.' },
+    { zh: '生活明朗，万物可爱。', en: 'Life is bright and everything is lovely.' }
+  ];
+  function dayOfYear(d) {
+    const start = new Date(d.getFullYear(), 0, 0);
+    return Math.floor((d - start) / 86400000);
+  }
+  function getTodayQuote() {
+    const t = todayStr();
+    if (!DB.quotes.date || DB.quotes.date !== t) {
+      DB.quotes = { date: t, base: dayOfYear(new Date()) % QUOTES.length, offset: 0 };
+      save();
+    }
+    const idx = (DB.quotes.base + (DB.quotes.offset || 0)) % QUOTES.length;
+    return QUOTES[idx];
+  }
+
+  /* ---------- 导航与模块配置 ---------- */
+  const SECTIONS = [
+    {
+      id: 'piggy', icon: '🐷', name: '猪猪之家', color: '#E9B7A0',
+      modules: [
+        { id: 'pig_secure', name: '加密内容', icon: '🔐', type: 'secureNote' },
+        { id: 'pig_size', name: '尺寸数据', icon: '📏', type: 'list', tag: '累积',
+          fields: [
+            { key: 'item', label: '项目', placeholder: '如：腰围 / 臂长' },
+            { key: 'value', label: '数值', placeholder: '如：68 cm' },
+            { key: 'note', label: '备注', placeholder: '可选' }
+          ] },
+        { id: 'pig_storage', name: '收纳记录', icon: '🧺', type: 'storage', tag: '可搜索位置',
+          fields: [
+            { key: 'name', label: '物品名称', placeholder: '如：充电宝' },
+            { key: 'loc', label: '存放位置', placeholder: '如：客厅左边抽屉第二层' },
+            { key: 'note', label: '备注', placeholder: '可选' }
+          ] },
+        { id: 'pig_clean', name: '卫生清洁', icon: '🧽', type: 'checklist', tag: '每日重置',
+          defaults: ['扫地', '拖地', '擦拭桌面', '清洗洗漱台', '整理床铺', '倒垃圾', '洗衣服'] }
+      ]
+    },
+    {
+      id: 'health', icon: '💪', name: '健康生活', color: '#A9C0A0',
+      modules: [
+        { id: 'h_weight', name: '每日体重', icon: '⚖️', type: 'weight', tag: '每日一条' },
+        { id: 'h_exercise', name: '运动打卡', icon: '🏃', type: 'checklist', tag: '每日重置',
+          defaults: ['跑步 / 快走', '拉伸', '核心训练', '喝水 8 杯', '早睡'] },
+        { id: 'h_diet', name: '饮食记录', icon: '🥗', type: 'list', tag: '累积',
+          fields: [
+            { key: 'meal', label: '餐次', placeholder: '早 / 午 / 晚 / 加餐' },
+            { key: 'food', label: '吃了什么', placeholder: '如：番茄鸡蛋面' },
+            { key: 'kcal', label: '热量(kcal)', placeholder: '可选' }
+          ] },
+        { id: 'h_learn', name: '值得学习', icon: '💡', type: 'note', tag: '累积' }
+      ]
+    },
+    {
+      id: 'craft', icon: '🎨', name: '手作专区', color: '#E7B7C9', type: 'craft'
+    },
+    {
+      id: 'du', icon: '🍊', name: '小嘟频道', color: '#E6C277',
+      modules: [
+        { id: 'd_grow', name: '成长记录', icon: '🌱', type: 'list', tag: '累积',
+          fields: [
+            { key: 'date', label: '日期', type: 'date' },
+            { key: 'event', label: '成长事项', placeholder: '如：会叫妈妈了' },
+            { key: 'note', label: '备注', placeholder: '可选' }
+          ] },
+        { id: 'd_eat', name: '吃饭饱饱', icon: '🍚', type: 'list', tag: '累积',
+          fields: [
+            { key: 'meal', label: '餐次', placeholder: '早 / 午 / 晚' },
+            { key: 'food', label: '吃了什么', placeholder: '如：米粉 + 南瓜泥' },
+            { key: 'note', label: '备注', placeholder: '可选' }
+          ] },
+        { id: 'd_read', name: '阅读记录', icon: '📚', type: 'list', tag: '累积',
+          fields: [
+            { key: 'book', label: '书名', placeholder: '如：猜猜我有多爱你' },
+            { key: 'author', label: '作者', placeholder: '可选' },
+            { key: 'note', label: '感想 / 进度', placeholder: '可选' }
+          ] },
+        { id: 'd_sport', name: '运动记录', icon: '⚽', type: 'list', tag: '累积',
+          fields: [
+            { key: 'sport', label: '运动', placeholder: '如：游泳' },
+            { key: 'duration', label: '时长', placeholder: '如：30 分钟' },
+            { key: 'note', label: '备注', placeholder: '可选' }
+          ] },
+        { id: 'd_plan', name: '学习计划', icon: '🎯', type: 'list', tag: '累积',
+          fields: [
+            { key: 'plan', label: '计划内容', placeholder: '如：认识 10 个汉字' },
+            { key: 'due', label: '目标日期', type: 'date' },
+            { key: 'status', label: '状态', type: 'select', options: ['进行中', '已完成', '搁置'] }
+          ] },
+        { id: 'd_points', name: '积分累计', icon: '⭐', type: 'points', tag: '累积', unit: '分' }
+      ]
+    },
+    {
+      id: 'account', icon: '💰', name: '当个会计', color: '#E6C277',
+      modules: [
+        { id: 'a_favor', name: '人情往来', icon: '🤝', type: 'list', tag: '累积',
+          fields: [
+            { key: 'who', label: '人物', placeholder: '如：表姐' },
+            { key: 'event', label: '事项', placeholder: '如：生日红包' },
+            { key: 'amount', label: '金额', placeholder: '数字' },
+            { key: 'dir', label: '方向', type: 'select', options: ['借出', '借入', '送礼', '收礼'] }
+          ] },
+        { id: 'a_expense', name: '开支记录', icon: '🧾', type: 'list', tag: '累积',
+          showTotal: true, amountKey: 'amount',
+          fields: [
+            { key: 'cat', label: '类别', placeholder: '如：餐饮 / 交通' },
+            { key: 'amount', label: '金额', type: 'number', placeholder: '数字' },
+            { key: 'note', label: '备注', placeholder: '可选' }
+          ] },
+        { id: 'a_save', name: '存钱罐罐', icon: '🐷', type: 'points', tag: '累积', unit: '元', money: true }
+      ]
+    },
+    {
+      id: 'study', icon: '📖', name: '学习至上', color: '#A9C4DD',
+      modules: [
+        { id: 's_parent', name: '育儿学习', icon: '👶', type: 'note', tag: '累积' },
+        { id: 's_books', name: '每月书籍', icon: '📕', type: 'list', tag: '累积',
+          fields: [
+            { key: 'month', label: '月份', placeholder: '如：2026-07' },
+            { key: 'book', label: '书名', placeholder: '如：被讨厌的勇气' },
+            { key: 'author', label: '作者', placeholder: '可选' }
+          ] },
+        { id: 's_podcast', name: '每月播客', icon: '🎧', type: 'list', tag: '累积',
+          fields: [
+            { key: 'month', label: '月份', placeholder: '如：2026-07' },
+            { key: 'name', label: '播客名', placeholder: '如：得意忘形' },
+            { key: 'note', label: '感想', placeholder: '可选' }
+          ] },
+        { id: 's_learn', name: '值得学习', icon: '💡', type: 'note', tag: '累积' }
+      ]
+    },
+    {
+      id: 'time', icon: '🕒', name: '时间记录', color: '#C9B6DD',
+      modules: [
+        { id: 't_birthday', name: '生日时间', icon: '🎂', type: 'dates', tag: '倒计时', annual: true,
+          fields: [
+            { key: 'name', label: '姓名', placeholder: '如：妈妈' },
+            { key: 'date', label: '生日', type: 'date' }
+          ] },
+        { id: 't_pray', name: '祈福时间', icon: '🙏', type: 'dates', tag: '倒计时', annual: false,
+          fields: [
+            { key: 'name', label: '祈福内容', placeholder: '如：家人平安' },
+            { key: 'date', label: '祈福 / 还愿日期', type: 'date' },
+            { key: 'note', label: '备注', placeholder: '可选' }
+          ] },
+        { id: 't_important', name: '重要日子', icon: '💖', type: 'dates', tag: '倒计时', annual: false,
+          fields: [
+            { key: 'name', label: '事项', placeholder: '如：结婚纪念日' },
+            { key: 'date', label: '日期', type: 'date' },
+            { key: 'annual', label: '每年重复', type: 'checkbox' },
+            { key: 'note', label: '备注', placeholder: '可选' }
+          ] }
+      ]
+    },
+    {
+      id: 'recent', icon: '❗️', name: '近期重要', color: '#F2C6C2', modules: [],
+      type: 'recent'
+    }
+  ];
+
+  const MOD_MAP = {};
+  SECTIONS.forEach(s => (s.modules || []).forEach(m => { m.section = s.id; MOD_MAP[m.id] = m; }));
+
+  /* ---------- 全局状态：当前视图 ---------- */
+  let current = 'home';
+
+  /* ---------- 工具 ---------- */
+  const $ = (sel, el = document) => el.querySelector(sel);
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const fmtDate = d => { const x = new Date(d); return isNaN(x) ? '' : `${x.getMonth() + 1}月${x.getDate()}日`; };
+
+  function daysUntil(dateStr, annual) {
+    const today = new Date(); today.setHours(0, 0, 0, 0);
+    let target = new Date(dateStr + 'T00:00:00');
+    if (isNaN(target)) return null;
+    if (annual) {
+      target = new Date(today.getFullYear(), target.getMonth(), target.getDate());
+      if (target < today) target = new Date(today.getFullYear() + 1, target.getMonth(), target.getDate());
+    }
+    return Math.round((target - today) / 86400000);
+  }
+
+  /* ===================================================================
+     渲染：导航
+     =================================================================== */
+  function renderNav() {
+    const nav = $('#nav');
+    nav.innerHTML = SECTIONS.map(s => {
+      const badge = s.type === 'recent' ? recentCount() : '';
+      return `<div class="nav-item ${current === s.id ? 'active' : ''}" data-id="${s.id}">
+        <div class="nav-ico">${s.icon}</div>
+        <div class="nav-label">${s.name}</div>
+        ${badge ? `<span class="nav-badge">${badge}</span>` : ''}
+      </div>`;
+    }).join('');
+    nav.querySelectorAll('.nav-item').forEach(el => {
+      el.onclick = () => { openSection(el.dataset.id); closeDrawer(); };
+    });
+  }
+  // 抽屉控制（手机端）
+  function openDrawer() { document.body.classList.add('drawer-open'); $('#sidebar').classList.add('open'); }
+  function closeDrawer() { $('#sidebar').classList.remove('open'); document.body.classList.remove('drawer-open'); }
+
+  function openSection(id) {
+    current = id;
+    clearInterval(clockTimer); // 离开桌面时停止时钟定时器
+    renderNav();
+    if (id === 'home') { renderHome(); $('#topTitle').textContent = '桌面'; $('#topSub').textContent = '我的专属小天地'; }
+    else {
+      const s = SECTIONS.find(x => x.id === id);
+      $('#topTitle').textContent = s.name;
+      $('#topSub').textContent = s.type === 'craft' ? '食品DIY · 手工DIY · 智能解析' : s.modules.map(m => m.name).join(' · ');
+      renderSection(s);
+    }
+  }
+
+  /* ===================================================================
+     渲染：桌面首页
+     =================================================================== */
+  function renderHome() {
+    const content = $('#content');
+    const q = getTodayQuote();
+    content.innerHTML = `
+      <div class="home-grid">
+        <div class="home-card clock-card">
+          <div class="clock-time" id="clk">--:--:--</div>
+          <div class="clock-date" id="clkDate"></div>
+          <div class="clock-week" id="clkWeek"></div>
+          <div class="checkin-area">
+            <button class="checkin-btn ${DB.checkin.lastDate === todayStr() ? 'done' : ''}" id="checkinBtn">
+              ${DB.checkin.lastDate === todayStr() ? '✅ 今日已打卡' : '☀️ 今日打卡'}
+            </button>
+            <div class="streak">已连续打卡 <b>${DB.checkin.streak || 0}</b> 天</div>
+          </div>
+        </div>
+        <div class="home-card quote-card">
+          <div class="quote-tag">🌈 今日激励 · DAILY MOTIVATION</div>
+          <div class="quote-zh">${esc(q.zh)}</div>
+          <div class="quote-en">${esc(q.en)}</div>
+          <button class="quote-change" id="quoteChange">换一句 ↻</button>
+        </div>
+      </div>
+      <div class="home-stats" id="homeStats"></div>
+      <div class="widget-grid" id="widgetGrid"></div>
+      <div class="upcoming">
+        <h3>📌 近期重要 · 即将到来</h3>
+        <div id="upcomingList"></div>
+      </div>`;
+
+    startClock();
+    $('#checkinBtn').onclick = doCheckin;
+    $('#quoteChange').onclick = () => { DB.quotes.offset = ((DB.quotes.offset || 0) + 1) % QUOTES.length; save(); renderHome(); };
+    renderHomeStats();
+    renderWidgets();
+    renderUpcoming();
+  }
+
+  let clockTimer = null;
+  function startClock() {
+    const week = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+    const tick = () => {
+      const c = $('#clk'); if (!c) return; // 已离开桌面则停止
+      const d = new Date();
+      const p = n => String(n).padStart(2, '0');
+      c.textContent = `${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`;
+      $('#clkDate').textContent = `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`;
+      $('#clkWeek').textContent = week[d.getDay()];
+    };
+    tick(); clearInterval(clockTimer); clockTimer = setInterval(tick, 1000);
+  }
+
+  function doCheckin() {
+    const t = todayStr();
+    if (DB.checkin.lastDate === t) return;
+    const y = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+    DB.checkin.streak = (DB.checkin.lastDate === y) ? (DB.checkin.streak || 0) + 1 : 1;
+    DB.checkin.lastDate = t;
+    save(); renderHome();
+  }
+
+  function renderHomeStats() {
+    const mod = id => M(id);
+    const stats = [
+      { ico: '⚖️', num: (mod('h_weight').records || []).slice(-1)[0]?.value || '—', label: '最新体重' },
+      { ico: '⭐', num: mod('d_points').total || 0, label: '小嘟积分' },
+      { ico: '🐷', num: '¥' + (mod('a_save').total || 0), label: '存钱罐' },
+      { ico: '📚', num: (mod('d_read').items || []).length, label: '阅读本数' }
+    ];
+    $('#homeStats').innerHTML = stats.map(s => `
+      <div class="stat"><div class="stat-ico">${s.ico}</div>
+      <div class="stat-num">${esc(s.num)}</div><div class="stat-label">${s.label}</div></div>`).join('');
+  }
+
+  function collectUpcoming() {
+    const out = [];
+    ['t_birthday', 't_pray', 't_important'].forEach(id => {
+      const m = M(id); (m.items || []).forEach(it => {
+        const d = daysUntil(it.date, !!it.annual || id === 't_birthday');
+        if (d != null) out.push({ name: it.name, days: d, icon: MOD_MAP[id].icon, type: MOD_MAP[id].name });
+      });
+    });
+    return out.sort((a, b) => a.days - b.days).slice(0, 6);
+  }
+  function renderUpcoming() {
+    const list = collectUpcoming();
+    const el = $('#upcomingList');
+    if (!list.length) { el.innerHTML = `<div class="empty">还没有记录重要日子，去「时间记录」添加吧～</div>`; return; }
+    el.innerHTML = list.map(u => {
+      const txt = u.days === 0 ? '就是今天 🎉' : u.days > 0 ? `还有 ${u.days} 天` : `已过 ${Math.abs(u.days)} 天`;
+      return `<div class="upcoming-item"><span class="ui-ico">${u.icon}</span>
+        <span class="ui-name">${esc(u.name)} <small style="color:var(--ink-soft)">· ${u.type}</small></span>
+        <span class="ui-days">${txt}</span></div>`;
+    }).join('');
+  }
+  function recentCount() { return collectUpcoming().length; }
+
+  /* ===================================================================
+     桌面小组件
+     =================================================================== */
+  function getMood() { const t = todayStr(); if (!DB.mood || DB.mood.date !== t) DB.mood = { date: t, emoji: '' }; return DB.mood; }
+  function getWater() { const t = todayStr(); if (!DB.water || DB.water.date !== t) DB.water = { date: t, count: 0 }; return DB.water; }
+
+  function renderWidgets() {
+    const grid = $('#widgetGrid');
+    if (!grid) return;
+    grid.innerHTML = moodCard() + waterCard() + quickCard() + checkCard() + calCard();
+    bindMood(grid); bindWater(grid); bindQuick(grid);
+  }
+
+  /* —— 今日心情 —— */
+  const MOODS = [['😞', '沮丧'], ['😕', '一般'], ['😐', '平淡'], ['🙂', '不错'], ['😄', '超棒']];
+  function moodCard() {
+    const mood = getMood();
+    const label = mood.emoji ? MOODS.find(x => x[0] === mood.emoji)[1] : '';
+    return `<div class="widget">
+      <div class="w-head">🌤 今日心情</div>
+      <div class="mood-row">${MOODS.map(([e, n]) => `<button class="mood-btn ${mood.emoji === e ? 'on' : ''}" data-m="${e}" title="${n}">${e}</button>`).join('')}</div>
+      <div class="w-sub">${mood.emoji ? '今天的心情：' + mood.emoji + ' ' + label : '点一下，记录今天的心情～'}</div>
+    </div>`;
+  }
+  function bindMood(grid) {
+    grid.querySelectorAll('.mood-btn').forEach(b => b.onclick = () => { getMood().emoji = b.dataset.m; save(); renderWidgets(); });
+  }
+
+  /* —— 喝水打卡 —— */
+  const WATER_GOAL = 8;
+  function waterCard() {
+    const w = getWater(); const pct = Math.min(100, Math.round(w.count / WATER_GOAL * 100));
+    return `<div class="widget">
+      <div class="w-head">💧 喝水打卡</div>
+      <div class="water-num"><b>${w.count}</b> / ${WATER_GOAL} 杯</div>
+      <div class="water-bar"><div class="water-fill" style="width:${pct}%"></div></div>
+      <div class="water-btns">
+        <button class="btn ghost sm" id="wMi">－</button>
+        <button class="btn sm" id="wPl">＋ 一杯</button>
+      </div>
+    </div>`;
+  }
+  function bindWater(grid) {
+    grid.querySelector('#wPl').onclick = () => { const w = getWater(); w.count = Math.min(WATER_GOAL * 2, w.count + 1); save(); renderWidgets(); };
+    grid.querySelector('#wMi').onclick = () => { const w = getWater(); w.count = Math.max(0, w.count - 1); save(); renderWidgets(); };
+  }
+
+  /* —— 快捷操作 —— */
+  function quickCard() {
+    const acts = [
+      ['⚖️', '记体重', 'health', 'h_weight'],
+      ['🧾', '记开支', 'account', 'a_expense'],
+      ['🧺', '加收纳', 'piggy', 'pig_storage'],
+      ['🥗', '记饮食', 'health', 'h_diet'],
+      ['🎂', '加生日', 'time', 't_birthday'],
+      ['⭐', '攒积分', 'du', 'd_points']
+    ];
+    return `<div class="widget">
+      <div class="w-head">⚡ 快捷操作</div>
+      <div class="quick-grid">${acts.map(a => `<button class="quick-btn" data-s="${a[2]}" data-m="${a[3]}">${a[0]} ${a[1]}</button>`).join('')}</div>
+    </div>`;
+  }
+  function bindQuick(grid) {
+    grid.querySelectorAll('.quick-btn').forEach(b => b.onclick = () => quickGo(b.dataset.s, b.dataset.m));
+  }
+  function quickGo(sectionId, modId) {
+    openSection(sectionId);
+    setTimeout(() => {
+      const m = MOD_MAP[modId]; if (!m) return;
+      const card = [...document.querySelectorAll('.module')].find(c => c.querySelector('h2') && c.querySelector('h2').textContent === m.name);
+      if (!card) return;
+      const add = card.querySelector('#addBtn');
+      if (add) add.click();
+      else { const inp = card.querySelector('#wVal'); if (inp) { inp.scrollIntoView(); inp.focus(); } }
+    }, 60);
+  }
+
+  /* —— 今日打卡总览 —— */
+  function checkCard() {
+    const checks = [];
+    SECTIONS.forEach(s => (s.modules || []).forEach(m => {
+      if (m.type !== 'checklist') return;
+      const d = M(m.id); const t = todayStr();
+      if (d.date !== t) { d.date = t; d.checks = {}; }
+      const total = (m.defaults || []).length;
+      const done = (m.defaults || []).filter(l => d.checks[l]).length;
+      checks.push({ name: m.name, icon: m.icon, done, total, pct: total ? Math.round(done / total * 100) : 0 });
+    }));
+    return `<div class="widget wide">
+      <div class="w-head">✅ 今日打卡总览</div>
+      <div class="check-overview">${checks.map(c => `
+        <div class="co-row">
+          <span class="co-ico">${c.icon}</span>
+          <span class="co-name">${c.name}</span>
+          <span class="co-bar"><span class="co-fill" style="width:${c.pct}%"></span></span>
+          <span class="co-num">${c.done}/${c.total}</span>
+        </div>`).join('')}</div>
+    </div>`;
+  }
+
+  /* —— 迷你月历 —— */
+  function eventDaysOfMonth(y, mo) {
+    const set = new Set();
+    ['t_birthday', 't_pray', 't_important'].forEach(id => {
+      (M(id).items || []).forEach(it => {
+        if (!it.date) return;
+        const dt = new Date(it.date + 'T00:00:00'); if (isNaN(dt)) return;
+        const isAnnual = id === 't_birthday' || !!it.annual;
+        if (isAnnual) { if (dt.getMonth() === mo) set.add(dt.getDate()); }
+        else if (dt.getFullYear() === y && dt.getMonth() === mo) set.add(dt.getDate());
+      });
+    });
+    return set;
+  }
+  function calCard() {
+    const now = new Date(); const y = now.getFullYear(), mo = now.getMonth();
+    const first = new Date(y, mo, 1).getDay(); const days = new Date(y, mo + 1, 0).getDate();
+    const ev = eventDaysOfMonth(y, mo);
+    const wk = ['日', '一', '二', '三', '四', '五', '六'];
+    let cells = '';
+    for (let i = 0; i < first; i++) cells += `<span class="cal-cell empty"></span>`;
+    for (let d = 1; d <= days; d++) {
+      const isT = d === now.getDate(); const has = ev.has(d);
+      cells += `<span class="cal-cell ${isT ? 'today' : ''} ${has ? 'ev' : ''}">${d}${has ? '<i class="dot"></i>' : ''}</span>`;
+    }
+    return `<div class="widget">
+      <div class="w-head">📅 ${y}年${mo + 1}月</div>
+      <div class="cal">
+        <div class="cal-wk">${wk.map(w => `<span>${w}</span>`).join('')}</div>
+        <div class="cal-grid">${cells}</div>
+      </div>
+    </div>`;
+  }
+
+  /* ===================================================================
+     渲染：某个分区（含多个模块卡片）
+     =================================================================== */
+  function renderSection(s) {
+    const content = $('#content');
+    if (s.type === 'recent') { renderRecent(); return; }
+    if (s.type === 'craft') { renderCraftSection(s); return; }
+    content.innerHTML = `<div class="module-grid" id="modGrid"></div>`;
+    const grid = $('#modGrid');
+    s.modules.forEach(m => {
+      const card = document.createElement('div');
+      card.className = 'module';
+      card.innerHTML = `<div class="module-head"><span class="m-ico">${m.icon}</span>
+        <h2>${m.name}</h2>${m.tag ? `<span class="m-tag">${m.tag}</span>` : ''}</div>
+        <div class="mod-body"></div>`;
+      grid.appendChild(card);
+      renderModule(m, card.querySelector('.mod-body'));
+    });
+  }
+
+  /* ===================================================================
+     通用：列表型模块（含收纳搜索、合计）
+     =================================================================== */
+  function renderModule(m, body) {
+    switch (m.type) {
+      case 'note': return renderNote(m, body);
+      case 'secureNote': return renderSecure(m, body);
+      case 'list': return renderList(m, body);
+      case 'storage': return renderStorage(m, body);
+      case 'checklist': return renderChecklist(m, body);
+      case 'weight': return renderWeight(m, body);
+      case 'points': return renderPoints(m, body);
+      case 'dates': return renderDates(m, body);
+    }
+  }
+
+  /* ---- 文本笔记 ---- */
+  function renderNote(m, body) {
+    const d = M(m.id, { text: '' });
+    body.innerHTML = `<textarea class="note-area" style="width:100%;min-height:150px;border:1px solid var(--line);background:var(--card-soft);border-radius:12px;padding:12px;font-size:14px;outline:none;resize:vertical">${esc(d.text)}</textarea>`;
+    const ta = body.querySelector('textarea');
+    ta.oninput = () => { d.text = ta.value; save(); };
+  }
+
+  /* ---- 加密内容 ---- */
+  function renderSecure(m, body) {
+    const d = M(m.id, { text: '', locked: true, hint: '' });
+    if (d.locked) {
+      body.innerHTML = `<div class="secure-lock">
+        <div style="font-size:34px">🔒</div>
+        <p style="color:var(--ink-soft);font-size:13px;margin:6px 0 4px">输入密码查看 / 编辑加密内容</p>
+        <input type="password" id="secPass" placeholder="密码（首次使用即设定）"/>
+        <button class="btn" id="secGo" style="width:100%">🔓 进入</button>
+        ${d.hint ? `<p style="font-size:11px;color:var(--ink-soft);margin-top:8px">提示：${esc(d.hint)}</p>` : ''}
+      </div>`;
+      $('#secGo').onclick = () => {
+        const p = $('#secPass').value;
+        if (!p) return alert('请输入密码');
+        if (d.pass && d.pass !== p) return alert('密码错误 💢');
+        if (!d.pass) { d.pass = p; d.hint = ''; save(); }
+        d.locked = false; save(); renderSecure(m, body);
+      };
+      return;
+    }
+    body.innerHTML = `<div class="secure-body">
+      <textarea placeholder="这里的内容只有你知道密码才能看～">${esc(d.text)}</textarea>
+      <div style="display:flex;gap:8px;margin-top:10px;justify-content:flex-end">
+        <button class="btn ghost sm" id="secLock">🔒 锁定</button>
+        <button class="btn sm" id="secSave">💾 保存</button>
+      </div></div>`;
+    const ta = body.querySelector('textarea');
+    $('#secSave').onclick = () => { d.text = ta.value; save(); alert('已保存 🔐'); };
+    $('#secLock').onclick = () => { d.text = ta.value; d.locked = true; save(); renderSecure(m, body); };
+  }
+
+  /* ---- 通用列表 ---- */
+  function renderList(m, body) {
+    const d = M(m.id, { items: [] });
+    body.innerHTML = `
+      <button class="btn" id="addBtn" style="align-self:flex-start;margin-bottom:10px">＋ 添加</button>
+      ${m.showTotal ? `<div class="weight-stat" style="margin-bottom:8px">合计：<b>¥${(d.items||[]).reduce((s,i)=>s+(parseFloat(i[m.amountKey]||0)||0),0).toFixed(2)}</b></div>` : ''}
+      <div class="list" id="listEl"></div>`;
+    body.querySelector('#addBtn').onclick = () => openForm(m, null, body);
+    paintList(m, body);
+  }
+  function paintList(m, body) {
+    const d = M(m.id); const el = body.querySelector('#listEl');
+    const items = d.items || [];
+    if (!items.length) { el.innerHTML = `<div class="empty">还没有记录，点「添加」开始吧 ✍️</div>`; return; }
+    el.innerHTML = items.slice().reverse().map(it => {
+      const title = it[m.fields[0].key];
+      const sub = m.fields.slice(1).map(f => it[f.key] ? `${f.label}：${esc(it[f.key])}` : '').filter(Boolean).join(' ｜ ');
+      return `<div class="row">
+        <div class="row-main"><div class="row-title">${esc(title)}</div>${sub ? `<div class="row-sub">${sub}</div>` : ''}</div>
+        <button class="row-edit" data-edit="${it.id}">✏️</button>
+        <button class="row-del" data-del="${it.id}">🗑</button></div>`;
+    }).join('');
+    el.querySelectorAll('[data-del]').forEach(b => b.onclick = () => {
+      d.items = d.items.filter(x => x.id !== b.dataset.del); save(); paintList(m, body);
+      if (m.showTotal) renderList(m, body);
+    });
+    el.querySelectorAll('[data-edit]').forEach(b => b.onclick = () => {
+      const it = d.items.find(x => x.id === b.dataset.edit); openForm(m, it, body);
+    });
+  }
+
+  /* ---- 收纳记录（独立搜索框，直接显示位置） ---- */
+  function renderStorage(m, body) {
+    const d = M(m.id, { items: [] });
+    body.innerHTML = `
+      <div class="search-box">
+        <input type="text" id="stoSearch" placeholder="🔍 搜物品，直接显示它放在哪…"/>
+      </div>
+      <div id="stoResult"></div>
+      <button class="btn" id="addBtn" style="align-self:flex-start;margin:6px 0 10px">＋ 添加收纳</button>
+      <div class="list" id="listEl"></div>`;
+    body.querySelector('#addBtn').onclick = () => openForm(m, null, body);
+    const search = body.querySelector('#stoSearch');
+    search.oninput = () => {
+      const kw = search.value.trim();
+      const box = body.querySelector('#stoResult');
+      if (!kw) { box.innerHTML = ''; return; }
+      const hit = (d.items || []).filter(i => (i.name || '').toLowerCase().includes(kw.toLowerCase()));
+      if (!hit.length) { box.innerHTML = `<div class="search-result none">😶 没找到「${esc(kw)}」的存放位置，去添加一条吧</div>`; return; }
+      box.innerHTML = hit.map(i => `<div class="search-result">📦 <b>${esc(i.name)}</b> 放在：<b>${esc(i.loc || '未填写位置')}</b>${i.note ? ` ｜ ${esc(i.note)}` : ''}</div>`).join('');
+    };
+    paintList(m, body);
+  }
+
+  /* ---- 表单弹窗（新增/编辑） ---- */
+  function openForm(m, item, body) {
+    const isEdit = !!item;
+    let html = `<h3>${isEdit ? '✏️ 编辑' : '＋ 新增'} · ${m.name}</h3>`;
+    m.fields.forEach(f => {
+      const val = item ? (item[f.key] ?? '') : '';
+      html += `<div class="field"><label>${f.label}${f.type === 'checkbox' ? '' : ''}</label>`;
+      if (f.type === 'select') {
+        html += `<select data-k="${f.key}">${f.options.map(o => `<option ${val === o ? 'selected' : ''}>${o}</option>`).join('')}</select>`;
+      } else if (f.type === 'textarea') {
+        html += `<textarea data-k="${f.key}" rows="3" placeholder="${f.placeholder || ''}">${esc(val)}</textarea>`;
+      } else if (f.type === 'checkbox') {
+        html += `<label style="display:flex;gap:8px;align-items:center"><input type="checkbox" data-k="${f.key}" ${val ? 'checked' : ''}/> 是</label>`;
+      } else {
+        html += `<input type="${f.type === 'number' ? 'number' : f.type === 'date' ? 'date' : 'text'}" data-k="${f.key}" value="${esc(val)}" placeholder="${f.placeholder || ''}"/>`;
+      }
+      html += `</div>`;
+    });
+    html += `<div class="modal-actions"><button class="btn ghost" id="cancel">取消</button><button class="btn" id="ok">${isEdit ? '保存' : '添加'}</button></div>`;
+    showModal(html);
+    $('#cancel').onclick = closeModal;
+    $('#ok').onclick = () => {
+      const data = { id: item ? item.id : uid() };
+      m.fields.forEach(f => {
+        const el = $(`[data-k="${f.key}"]`);
+        let v = el.type === 'checkbox' ? el.checked : el.value;
+        data[f.key] = v;
+      });
+      const d = M(m.id, { items: [] });
+      if (isEdit) d.items = d.items.map(x => x.id === item.id ? data : x);
+      else d.items.push(data);
+      save(); closeModal();
+      if (m.type === 'storage' && body) renderStorage(m, body);
+      else if (m.type === 'dates' && body) paintDates(m, body);
+      else if (body) { renderList(m, body); }
+    };
+  }
+
+  /* ---- 每日打卡清单 ---- */
+  function renderChecklist(m, body) {
+    const t = todayStr();
+    const d = M(m.id, { date: t, checks: {} });
+    if (d.date !== t) { d.date = t; d.checks = {}; save(); } // 每日重置
+    const labels = m.defaults || [];
+    const done = labels.filter(l => d.checks[l]).length;
+    body.innerHTML = `
+      <div class="weight-stat" style="margin-bottom:10px">今日完成 <b>${done}/${labels.length}</b></div>
+      <div class="check-grid" id="cg"></div>`;
+    const cg = body.querySelector('#cg');
+    cg.innerHTML = labels.map(l => `<div class="check-item ${d.checks[l] ? 'on' : ''}" data-l="${esc(l)}">
+        <div class="box">${d.checks[l] ? '✓' : ''}</div><span class="ci-text">${esc(l)}</span></div>`).join('');
+    cg.querySelectorAll('.check-item').forEach(el => el.onclick = () => {
+      const l = el.dataset.l; d.checks[l] = !d.checks[l]; save(); renderChecklist(m, body);
+    });
+  }
+
+  /* ---- 每日体重（含图表） ---- */
+  function renderWeight(m, body) {
+    const d = M(m.id, { records: [] });
+    body.innerHTML = `
+      <div class="weight-inputs">
+        <input type="number" step="0.1" id="wVal" placeholder="今日体重 kg"/>
+        <button class="btn" id="wAdd">记录</button>
+      </div>
+      <div class="weight-stat" id="wStat"></div>
+      <div class="chart" id="wChart"></div>`;
+    body.querySelector('#wAdd').onclick = () => {
+      const v = parseFloat(body.querySelector('#wVal').value);
+      if (!v) return alert('请输入体重');
+      const t = todayStr();
+      d.records = d.records.filter(r => r.date !== t); // 每日一条
+      d.records.push({ date: t, value: v }); save(); renderWeight(m, body);
+    };
+    const recs = d.records.slice().sort((a, b) => a.date < b.date ? -1 : 1);
+    const last = recs.slice(-1)[0];
+    const first = recs[0];
+    let stat = `最新：<b>${last ? last.value + ' kg' : '—'}</b>`;
+    if (last && first && recs.length > 1) stat += ` ｜ 记录 ${recs.length} 天 ｜ 变化：<b>${(last.value - first.value).toFixed(1)} kg</b>`;
+    body.querySelector('#wStat').innerHTML = stat;
+    drawChart(recs);
+  }
+  function drawChart(recs) {
+    const el = $('#wChart'); if (!el) return;
+    const data = recs.slice(-14);
+    if (data.length < 2) { el.innerHTML = `<div class="empty">记录 2 天以上即可看到趋势曲线 📈</div>`; return; }
+    const W = 300, H = 150, pad = 24;
+    const vals = data.map(d => d.value);
+    const min = Math.min(...vals), max = Math.max(...vals);
+    const range = (max - min) || 1;
+    const x = i => pad + i * (W - pad * 2) / (data.length - 1);
+    const y = v => H - pad - (v - min) / range * (H - pad * 2);
+    const pts = data.map((d, i) => `${x(i).toFixed(1)},${y(d.value).toFixed(1)}`).join(' ');
+    el.innerHTML = `<svg class="chart" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">
+      <polyline fill="none" stroke="#D89A7E" stroke-width="2.5" points="${pts}"/>
+      ${data.map((d, i) => `<circle cx="${x(i).toFixed(1)}" cy="${y(d.value).toFixed(1)}" r="3" fill="#E9B7A0"/>`).join('')}
+    </svg>`;
+  }
+
+  /* ---- 积分 / 存钱 ---- */
+  function renderPoints(m, body) {
+    const d = M(m.id, { total: 0, logs: [] });
+    const unit = m.money ? '元' : (m.unit || '');
+    body.innerHTML = `
+      <div class="points-big">${m.money ? '¥' : ''}${d.total}<span style="font-size:18px;color:var(--ink-soft)"> ${unit}</span></div>
+      <div class="points-actions">
+        <button class="btn sage sm" id="plus">＋ 增加</button>
+        <button class="btn ghost sm" id="minus">－ 减少</button>
+      </div>
+      <div class="list" id="pLog" style="margin-top:12px"></div>`;
+    const paint = () => {
+      body.querySelector('.points-big').innerHTML = `${m.money ? '¥' : ''}${d.total}<span style="font-size:18px;color:var(--ink-soft)"> ${unit}</span>`;
+      const log = (d.logs || []).slice().reverse();
+      body.querySelector('#pLog').innerHTML = log.length
+        ? log.map(l => `<div class="row"><div class="row-main"><div class="row-title" style="color:${l.delta >= 0 ? '#7aa06f' : '#D9694E'}">${l.delta >= 0 ? '＋' : ''}${l.delta} ${unit} ${esc(l.note || '')}</div><div class="row-sub">${l.date}</div></div></div>`).join('')
+        : `<div class="empty">暂无变动记录</div>`;
+    };
+    body.querySelector('#plus').onclick = () => changePoints(d, m, 1, paint, unit);
+    body.querySelector('#minus').onclick = () => changePoints(d, m, -1, paint, unit);
+    paint();
+  }
+  function changePoints(d, m, sign, paint, unit) {
+    showModal(`<h3>${sign > 0 ? '＋ 增加' : '－ 减少'} ${m.name}</h3>
+      <div class="field"><label>数量（${unit}）</label><input type="number" id="amt" placeholder="0"/></div>
+      <div class="field"><label>备注</label><input type="text" id="note" placeholder="可选"/></div>
+      <div class="modal-actions"><button class="btn ghost" id="c">取消</button><button class="btn" id="o">确定</button></div>`);
+    $('#c').onclick = closeModal;
+    $('#o').onclick = () => {
+      const amt = parseFloat($('#amt').value); if (!amt) return alert('请输入数量');
+      const delta = Math.abs(amt) * sign;
+      d.total = Math.max(0, (d.total || 0) + delta);
+      d.logs = d.logs || []; d.logs.push({ delta, note: $('#note').value, date: todayStr() });
+      save(); closeModal(); paint();
+    };
+  }
+
+  /* ---- 日期倒计时模块 ---- */
+  function renderDates(m, body) {
+    const d = M(m.id, { items: [] });
+    body.innerHTML = `
+      <button class="btn" id="addBtn" style="align-self:flex-start;margin-bottom:10px">＋ 添加</button>
+      <div class="date-grid list" id="listEl"></div>`;
+    body.querySelector('#addBtn').onclick = () => openForm(m, null, body);
+    paintDates(m, body);
+  }
+  function paintDates(m, body) {
+    const d = M(m.id); const el = body.querySelector('#listEl');
+    const items = (d.items || []).map(it => ({ ...it, _days: daysUntil(it.date, m.annual || it.annual) }));
+    items.sort((a, b) => (a._days ?? 1e9) - (b._days ?? 1e9));
+    if (!items.length) { el.innerHTML = `<div class="empty">还没有记录，点「添加」吧 🗓</div>`; return; }
+    el.innerHTML = items.map(it => {
+      const dd = it._days;
+      const txt = dd === 0 ? '就是今天 🎉' : dd > 0 ? `还有 <b>${dd}</b> 天` : `已过 <b>${Math.abs(dd)}</b> 天`;
+      const sub = `${fmtDate(it.date)}${m.annual || it.annual ? '（每年）' : ''}${it.note ? ' ｜ ' + esc(it.note) : ''}`;
+      return `<div class="row"><div class="row-main"><div class="row-title">${esc(it.name)}</div>
+        <div class="row-sub">${sub}</div></div>
+        <span class="ui-days" style="color:var(--peach-deep);font-weight:700;font-size:13px;white-space:nowrap">${txt}</span>
+        <button class="row-edit" data-edit="${it.id}">✏️</button>
+        <button class="row-del" data-del="${it.id}">🗑</button></div>`;
+    }).join('');
+    el.querySelectorAll('[data-del]').forEach(b => b.onclick = () => { d.items = d.items.filter(x => x.id !== b.dataset.del); save(); paintDates(m, body); if (m.id.startsWith('t_')) renderNav(); });
+    el.querySelectorAll('[data-edit]').forEach(b => b.onclick = () => { const it = d.items.find(x => x.id === b.dataset.edit); openForm(m, it, body); });
+  }
+
+  /* ---- 近期重要聚合页 ---- */
+  function renderRecent() {
+    const content = $('#content');
+    const all = [];
+    ['t_birthday', 't_pray', 't_important'].forEach(id => {
+      const m = MOD_MAP[id]; (M(id).items || []).forEach(it => {
+        const dd = daysUntil(it.date, m.annual || it.annual);
+        if (dd != null) all.push({ name: it.name, days: dd, icon: m.icon, type: m.name, note: it.note, date: it.date });
+      });
+    });
+    all.sort((a, b) => a.days - b.days);
+    const soon = all.filter(x => x.days >= 0).slice(0, 8);
+    const past = all.filter(x => x.days < 0).slice(0, 5);
+    const card = (x) => {
+      const txt = x.days === 0 ? '🎉 就是今天' : x.days > 0 ? `还有 <b>${x.days}</b> 天` : `已过 <b>${Math.abs(x.days)}</b> 天`;
+      return `<div class="upcoming-item"><span class="ui-ico">${x.icon}</span>
+        <span class="ui-name">${esc(x.name)} <small style="color:var(--ink-soft)">· ${x.type} · ${fmtDate(x.date)}</small></span>
+        <span class="ui-days">${txt}</span></div>`;
+    };
+    content.innerHTML = `
+      <div class="upcoming" style="margin-top:8px">
+        <h3>🔜 即将到来（${soon.length}）</h3>
+        ${soon.length ? soon.map(card).join('') : '<div class="empty">暂无即将到来的日子</div>'}
+      </div>
+      <div class="upcoming" style="margin-top:20px">
+        <h3>💭 刚刚过去（${past.length}）</h3>
+        ${past.length ? past.map(card).join('') : '<div class="empty">暂无</div>'}
+      </div>`;
+  }
+
+  /* ===================================================================
+     手作专区（食品DIY / 手工DIY + 智能解析框）
+     =================================================================== */
+  let craftState = { cat: null };
+  function getCraft() {
+    if (!DB.craft) DB.craft = { food: { items: [] }, hand: { items: [] } };
+    if (!DB.craft.food) DB.craft.food = { items: [] };
+    if (!DB.craft.hand) DB.craft.hand = { items: [] };
+    return DB.craft;
+  }
+  function catArr(cat) { const c = getCraft(); return cat === 'food' ? c.food : c.hand; }
+
+  function renderCraftSection() {
+    const content = $('#content');
+    craftState.cat = null;
+    content.innerHTML = `
+      <div id="craftArea"></div>
+      <div class="craft-parse">
+        <div class="w-head">🤖 智能解析 · 小红书笔记拆解</div>
+        <p class="craft-tip">复制小红书笔记的<b>正文</b>（或链接），点「粘贴并解析」会自动读取剪贴板，帮你梳理「材料 / 克重」与「步骤」，并判断属于 🧁食品 还是 🧶手工。</p>
+        <textarea id="parseInput" class="note-area" style="min-height:90px" placeholder="这里会自动填入剪贴板内容，也可手动粘贴笔记正文…"></textarea>
+        <div class="parse-msg" id="parseMsg"></div>
+        <button class="btn" id="parseBtn">📋 粘贴并解析</button>
+      </div>`;
+    paintCraftArea();
+    $('#parseBtn').onclick = onParseClick;
+    const pi = $('#parseInput');
+    if (pi) pi.addEventListener('input', () => {
+      const v = pi.value.trim();
+      if (/xiaohongshu|xhslink/i.test(v)) {
+        setParseMsg('🔗 检测到小红书链接：小红书不允许程序自动读取笔记正文（平台限制）。请在小红书 App 打开该笔记 → 右上角「…」→「复制」（选复制<b>正文</b>，不是「复制链接」）→ 回到这里把正文粘贴进来 → 点「粘贴并解析」即可自动拆材料与步骤 ✨');
+      } else if (!v) {
+        setParseMsg('');
+      }
+    });
+  }
+
+  function setParseMsg(html) { const el = $('#parseMsg'); if (el) el.innerHTML = html; }
+
+  function paintCraftArea() {
+    const area = $('#craftArea'); if (!area) return;
+    const c = getCraft();
+    if (!craftState.cat) {
+      area.innerHTML = `
+        <div class="craft-cats">
+          ${craftCatCard('food', '🧁', '食品DIY', '蛋糕 / 面包 / 甜点配方', c.food.items.length)}
+          ${craftCatCard('hand', '🧶', '手工DIY', '黏土 / 编织 / 手工教程', c.hand.items.length)}
+        </div>`;
+      area.querySelectorAll('[data-cat]').forEach(el => el.onclick = () => setCraftCat(el.dataset.cat));
+      return;
+    }
+    const cat = craftState.cat, isFood = cat === 'food', arr = catArr(cat).items;
+    area.innerHTML = `
+      <div class="craft-head">
+        <button class="btn ghost sm" id="craftBack">← 返回</button>
+        <div class="craft-head-title">${isFood ? '🧁 食品DIY' : '🧶 手工DIY'}</div>
+        <button class="btn sm" id="craftAdd">＋ 新增${isFood ? '食品' : '手工'}名称</button>
+      </div>
+      <div class="list" id="craftList"></div>`;
+    $('#craftBack').onclick = () => setCraftCat(null);
+    $('#craftAdd').onclick = () => openCraftEditor(cat, null);
+    const el = area.querySelector('#craftList');
+    if (!arr.length) { el.innerHTML = `<div class="empty">还没有记录，点右上角「＋ 新增${isFood ? '食品' : '手工'}名称」开始吧～</div>`; return; }
+    el.innerHTML = arr.slice().reverse().map(it => `
+      <div class="row craft-row" data-id="${it.id}">
+        <div class="row-main"><div class="row-title">${esc(it.name)}</div>
+          <div class="row-sub">📦 材料 ${it.materials ? it.materials.length : 0} 项 ｜ 📝 步骤 ${it.steps ? it.steps.length : 0} 项</div></div>
+        <button class="row-edit" data-edit="${it.id}">✏️</button>
+        <button class="row-del" data-del="${it.id}">🗑</button>
+      </div>`).join('');
+    el.querySelectorAll('.craft-row').forEach(r => r.onclick = e => {
+      if (e.target.closest('.row-edit,.row-del')) return;
+      const it = arr.find(x => x.id === r.dataset.id); openCraftEditor(cat, it);
+    });
+    el.querySelectorAll('[data-del]').forEach(b => b.onclick = () => {
+      const a = catArr(cat); a.items = a.items.filter(x => x.id !== b.dataset.del); save(); paintCraftArea();
+    });
+    el.querySelectorAll('[data-edit]').forEach(b => b.onclick = () => {
+      const it = arr.find(x => x.id === b.dataset.edit); openCraftEditor(cat, it);
+    });
+  }
+  function craftCatCard(cat, ico, name, desc, n) {
+    return `<div class="craft-cat" data-cat="${cat}">
+      <div class="cc-ico">${ico}</div>
+      <div class="cc-body"><div class="cc-name">${name}</div><div class="cc-desc">${desc}</div></div>
+      <div class="cc-count">${n} 个</div></div>`;
+  }
+  function setCraftCat(cat) { craftState.cat = cat; paintCraftArea(); }
+
+  /* ---- 编辑器（新增 / 编辑 / 解析后编辑 共用） ---- */
+  function setupCraftLists(initialMat, initialStep) {
+    let mat = (initialMat || []).map(m => ({ name: m.name || '', amount: m.amount || '' }));
+    let step = (initialStep || []).map(s => ({ text: typeof s === 'string' ? s : (s.text || s.name || '') }));
+    const paintMat = () => {
+      const box = $('#eMat'); if (!box) return;
+      box.innerHTML = mat.map((m, i) => `<div class="kv-row"><input class="kv-k" data-i="${i}" data-f="name" placeholder="材料名" value="${esc(m.name)}"/><input class="kv-v" data-i="${i}" data-f="amount" placeholder="克重/数量" value="${esc(m.amount)}"/><button type="button" class="kv-del" data-i="${i}">✕</button></div>`).join('');
+      box.querySelectorAll('input').forEach(el => el.oninput = () => { mat[+el.dataset.i][el.dataset.f] = el.value; });
+      box.querySelectorAll('.kv-del').forEach(b => b.onclick = () => { mat = mat.filter((_, i) => i != +b.dataset.i); paintMat(); });
+    };
+    const paintStep = () => {
+      const box = $('#eStep'); if (!box) return;
+      box.innerHTML = step.map((s, i) => `<div class="kv-row"><input class="kv-k wide" data-i="${i}" data-f="text" placeholder="步骤 ${i + 1}" value="${esc(s.text)}"/><button type="button" class="kv-del" data-i="${i}">✕</button></div>`).join('');
+      box.querySelectorAll('input').forEach(el => el.oninput = () => { step[+el.dataset.i].text = el.value; });
+      box.querySelectorAll('.kv-del').forEach(b => b.onclick = () => { step = step.filter((_, i) => i != +b.dataset.i); paintStep(); });
+    };
+    paintMat(); paintStep();
+    return {
+      getMat: () => mat.filter(m => m.name || m.amount).map(m => ({ name: m.name.trim(), amount: m.amount.trim() })),
+      getStep: () => step.map(s => s.text.trim()).filter(Boolean),
+      addMat: () => { mat.push({ name: '', amount: '' }); paintMat(); },
+      addStep: () => { step.push({ text: '' }); paintStep(); }
+    };
+  }
+
+  function openCraftEditor(cat, item) {
+    item = item || {};
+    const isEdit = !!item.id;
+    const L = setupCraftLists(item.materials, item.steps);
+    let curCat = cat;
+    showModal(`<h3>${isEdit ? '✏️ 编辑' : '＋ 新增'} · ${cat === 'food' ? '食品DIY' : '手工DIY'}</h3>
+      <div class="field"><label>名称</label><input type="text" id="eName" value="${esc(item.name || '')}" placeholder="如：原味戚风蛋糕"/></div>
+      <div class="field"><label>分类</label><div class="seg">
+        <button type="button" class="seg-btn ${cat === 'food' ? 'on' : ''}" data-cat="food">🧁 食品DIY</button>
+        <button type="button" class="seg-btn ${cat === 'hand' ? 'on' : ''}" data-cat="hand">🧶 手工DIY</button></div></div>
+      <div class="field"><label>所需材料 / 克重</label><div id="eMat"></div><button type="button" class="btn ghost sm" id="eMatAdd">＋ 添加材料</button></div>
+      <div class="field"><label>制作步骤</label><div id="eStep"></div><button type="button" class="btn ghost sm" id="eStepAdd">＋ 添加步骤</button></div>
+      <div class="modal-actions"><button class="btn ghost" id="eCancel">取消</button><button class="btn" id="eOk">${isEdit ? '保存' : '添加'}</button></div>`);
+    $('#eMatAdd').onclick = L.addMat; $('#eStepAdd').onclick = L.addStep;
+    document.querySelectorAll('.seg-btn').forEach(b => b.onclick = () => { curCat = b.dataset.cat; document.querySelectorAll('.seg-btn').forEach(x => x.classList.toggle('on', x.dataset.cat === curCat)); });
+    $('#eCancel').onclick = closeModal;
+    $('#eOk').onclick = () => {
+      const name = $('#eName').value.trim() || '未命名';
+      const c = getCraft(); const arr = curCat === 'food' ? c.food : c.hand;
+      const data = { name, materials: L.getMat(), steps: L.getStep() };
+      if (isEdit) { const it = arr.items.find(x => x.id === item.id); if (it) Object.assign(it, data); }
+      else arr.items.unshift({ id: uid(), ...data });
+      save(); closeModal(); craftState.cat = curCat; paintCraftArea();
+    };
+  }
+
+  /* ---- 智能解析 ---- */
+  async function onParseClick() {
+    let text = '';
+    try { text = await navigator.clipboard.readText(); } catch (e) { }
+    if (!text || !text.trim()) text = $('#parseInput').value.trim();
+    if (!text || !text.trim()) { setParseMsg('未能读取到内容，请先把笔记正文复制好，或手动粘贴到上方框里再点「粘贴并解析」～'); return; }
+    $('#parseInput').value = text;
+    if (isURL(text)) {
+      setParseMsg('检测到链接，正在尝试抓取正文…');
+      const fetched = await tryFetch(text);
+      if (!fetched) {
+        if (/xiaohongshu|xhslink/i.test(text)) {
+          setParseMsg('⚠️ 小红书链接无法直接抓取（平台限制了浏览器/服务器读取笔记正文）。请把笔记<b>正文文字</b>复制下来：小红书 App 打开笔记 → 右上角「…」→「复制」（正文，不是复制链接）→ 粘贴到上方框 → 再点「粘贴并解析」✨');
+        } else {
+          setParseMsg('⚠️ 该链接无法直接抓取正文，请把网页/笔记的<b>正文文字</b>复制粘贴到上方框，再点「粘贴并解析」～');
+        }
+        return;
+      }
+      text = fetched; $('#parseInput').value = text;
+    }
+    const data = parseContent(text);
+    setParseMsg('✅ 识别完成，请确认 / 编辑下方内容：');
+    showParseResult(data);
+  }
+  function isURL(s) { return /^(https?:\/\/)/i.test(s.trim()) || /xhslink\.com/i.test(s); }
+  async function tryFetch(url) {
+    try {
+      const ctrl = new AbortController(); const t = setTimeout(() => ctrl.abort(), 6000);
+      const res = await fetch(url, { signal: ctrl.signal, mode: 'cors' });
+      clearTimeout(t);
+      if (!res.ok) return null;
+      let txt = await res.text();
+      if (/<html|<!doctype/i.test(txt)) txt = txt.replace(/<script[\s\S]*?<\/script>/gi, '').replace(/<style[\s\S]*?<\/style>/gi, '').replace(/<[^>]+>/g, '\n');
+      // 若仍是原始标签或内容过短（多为 JS 渲染页 / 登录墙），视作无法使用
+      if (txt.includes('<') || txt.replace(/\s/g, '').length < 40) return null;
+      return txt.slice(0, 20000);
+    } catch (e) { return null; }
+  }
+
+  function parseContent(text) {
+    const lines = text.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+    const foodKw = ['蛋糕', '面包', '饼干', '甜点', '甜品', '烘焙', '食谱', '配方', '面团', '奶油', '糖粉', '低筋', '高筋', '鸡蛋', '牛奶', '烤箱', '打发', '裱花', '慕斯', '芝士', '戚风', '可颂', '布丁', '蛋挞'];
+    const handKw = ['黏土', '超轻黏土', '折纸', '编织', '钩针', '刺绣', '手工', '拼豆', '滴胶', '串珠', '木工', 'diy', 'DIY', '羊毛毡', '不织布', '衍纸', '史莱姆', '流体熊', '数字油画', '扭棒'];
+    let f = 0, h = 0;
+    foodKw.forEach(k => { if (text.includes(k)) f++; });
+    handKw.forEach(k => { if (text.toLowerCase().includes(k.toLowerCase())) h++; });
+    const cat = f >= h ? 'food' : 'hand';
+
+    let name = '';
+    if (lines[0]) {
+      let l = lines[0].replace(/^[^\w一-龥]+/, '').replace(/[🍰🧁🎂🍪🥖🍞🥐🧇🍩🥧]/g, '').trim();
+      l = l.split(/[｜|·•]/)[0].trim();
+      if (l.length > 30) l = l.slice(0, 30);
+      name = l || '未命名作品';
+    }
+
+    const amtRe = /(\d+(?:\.\d+)?)\s*(?:克|g|G|千克|kg|KG|公斤|毫升|ml|ML|个|颗|根|片|勺|茶匙|汤匙|把|份|%|滴|张|条|块|枚|瓣|粒|杯|包|袋|簇|撮)|适量|少许|一丢丢|若干/;
+    const ratioRe = /\d+\s*:\s*\d+/;
+    const actionRe = /[搅拌混合倒入烤放加切揉蒸煮炒打发筛过冷藏冷冻发酵称重涂抹装饰组装擀包裱花]/;
+    const materials = [], stepLines = [];
+    lines.forEach((raw, idx) => {
+      if (idx === 0) return;
+      let l = raw.replace(/^[\s\-\*•·▪️◾◽●○◆★✓✔️⭐🔸🔹➤►]+/, '');
+      l = l.replace(/^[①②③④⑤⑥⑦⑧⑨⑩]\s*/, '');
+      if (amtRe.test(l) || ratioRe.test(l)) {
+        const r = l.match(ratioRe); const m = l.match(amtRe);
+        const amount = r ? r[0] : (m ? m[0] : '适量');
+        let mn = l.replace(ratioRe, '').replace(amtRe, '').replace(/[：:]/g, '').trim();
+        mn = (mn.split(/[｜|·•]/)[0] || l).trim();
+        if (!mn) mn = l;
+        materials.push({ name: mn, amount });
+      } else if (/^\s*\(?(\d+|[一二三四五六七八九十]+)\)?[\.、:：]/.test(l) || /步骤|第.?步|做法|制作|流程/.test(l)) {
+        stepLines.push(l);
+      } else if (actionRe.test(l) && l.length > 3) {
+        stepLines.push(l);
+      }
+    });
+    const steps = [...new Set(stepLines)];
+    return { name, cat, materials, steps };
+  }
+
+  function showParseResult(data) {
+    const catName = data.cat === 'food' ? '食品DIY' : '手工DIY';
+    const matHtml = data.materials.length
+      ? data.materials.map(x => `<li>${esc(x.name)}${x.amount ? ' · <b>' + esc(x.amount) + '</b>' : ''}</li>`).join('')
+      : '<li class="empty">未识别出材料，可点「编辑」补充</li>';
+    const stepHtml = data.steps.length
+      ? data.steps.map(s => '<li>' + esc(s) + '</li>').join('')
+      : '<li class="empty">未识别出步骤，可点「编辑」补充</li>';
+    showModal(`<h3>🤖 识别结果确认</h3>
+      <div class="parse-result">
+        <div class="pr-row"><span class="pr-k">内容名字</span><b class="pr-v">${esc(data.name)}</b></div>
+        <div class="pr-row"><span class="pr-k">识别分类</span><b class="pr-v">${catName}</b></div>
+        <div class="pr-block"><div class="pr-k">所需材料 / 克重</div><ul class="pr-list">${matHtml}</ul></div>
+        <div class="pr-block"><div class="pr-k">制作步骤</div><ol class="pr-list">${stepHtml}</ol></div>
+      </div>
+      <div class="tri-actions">
+        <button class="btn ghost" id="pCancel">取消</button>
+        <button class="btn" id="pAdd">添加</button>
+        <button class="btn outline" id="pEdit">编辑</button>
+      </div>`);
+    $('#pCancel').onclick = closeModal;
+    $('#pAdd').onclick = () => {
+      const c = getCraft(); const arr = data.cat === 'food' ? c.food : c.hand;
+      arr.items.unshift({ id: uid(), name: data.name || '未命名', materials: data.materials || [], steps: data.steps || [] });
+      save(); closeModal(); craftState.cat = data.cat; paintCraftArea();
+      alert('已添加到' + catName + '：' + (data.name || '未命名') + ' ✅');
+    };
+    $('#pEdit').onclick = () => openCraftEditor(data.cat, { name: data.name, materials: data.materials, steps: data.steps });
+  }
+
+  /* ===================================================================
+     弹窗
+     =================================================================== */
+  function showModal(html) {
+    $('#modal').innerHTML = html; $('#modalMask').hidden = false;
+  }
+  function closeModal() { $('#modalMask').hidden = true; $('#modal').innerHTML = ''; }
+  $('#modalMask').onclick = e => { if (e.target.id === 'modalMask') closeModal(); };
+
+  /* ===================================================================
+     顶部操作：今日重置 / 备份 / 恢复
+     =================================================================== */
+  $('#resetTodayBtn').onclick = () => {
+    if (!confirm('确认清空今日打卡与今日新增记录？（累积数据不受影响）')) return;
+    const t = todayStr();
+    // 重置所有每日打卡清单
+    SECTIONS.forEach(s => (s.modules || []).forEach(m => {
+      if (m.type === 'checklist') { const d = M(m.id); d.date = t; d.checks = {}; }
+    }));
+    // 删除「今日」新增的列表项
+    SECTIONS.forEach(s => (s.modules || []).forEach(m => {
+      if ((m.type === 'list' || m.type === 'dates') && DB.modules[m.id]?.items) {
+        DB.modules[m.id].items = DB.modules[m.id].items.filter(it => it.date !== t);
+      }
+    }));
+    // 删除今日体重
+    if (DB.modules['h_weight']?.records) DB.modules['h_weight'].records = DB.modules['h_weight'].records.filter(r => r.date !== t);
+    // 清空今日心情 / 喝水
+    DB.mood = { date: t, emoji: '' }; DB.water = { date: t, count: 0 };
+    save();
+    if (current === 'home') renderHome(); else if (current === 'recent') renderRecent(); else renderSection(SECTIONS.find(x => x.id === current));
+    alert('今日已重置 ✅');
+  };
+
+  $('#exportBtn').onclick = () => {
+    const blob = new Blob([JSON.stringify(DB, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = `我的工作台备份_${todayStr()}.json`; a.click();
+  };
+  $('#importBtn').onclick = () => $('#importFile').click();
+  $('#importFile').onchange = e => {
+    const f = e.target.files[0]; if (!f) return;
+    const r = new FileReader();
+    r.onload = () => {
+      try { const data = JSON.parse(r.result); if (confirm('恢复将覆盖当前数据，确定？')) { DB = data; save(); location.reload(); } }
+      catch (err) { alert('文件格式错误'); }
+    };
+    r.readAsText(f);
+  };
+
+  $('#brandBtn').onclick = () => { openSection('home'); closeDrawer(); };
+  $('#menuBtn').onclick = () => $('#sidebar').classList.toggle('open');
+  $('#sidebarMask').onclick = closeDrawer;
+  // 窗口变大时清除抽屉状态
+  window.addEventListener('resize', () => { if (window.innerWidth > 768) closeDrawer(); });
+
+  /* ===================================================================
+     启动
+     =================================================================== */
+  (function init() {
+    // 日期变更时自动重置每日打卡
+    const t = todayStr();
+    if (DB.lastDate && DB.lastDate !== t) {
+      SECTIONS.forEach(s => (s.modules || []).forEach(m => {
+        if (m.type === 'checklist') { const d = M(m.id); d.date = t; d.checks = {}; }
+      }));
+      save();
+    }
+    DB.lastDate = t; save();
+    renderNav();
+    openSection('home');
+    registerSW();
+  })();
+
+  /* ---- 注册 Service Worker（仅 http/https 下生效，用于「添加到主屏幕」与离线） ---- */
+  function registerSW() {
+    if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js').catch(() => { /* 忽略：file:// 下不支持 */ });
+      });
+    }
+  }
+})();
+</script>
+</body>
+</html>

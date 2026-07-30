@@ -1,0 +1,19 @@
+{
+  "name": "我的专属工作台",
+  "short_name": "工作台",
+  "description": "猪猪之家 · 健康生活 · 小嘟频道 · 当个会计 · 学习至上 · 时间记录 · 近期重要 —— 一个完全本地留存的生活工作台",
+  "lang": "zh-CN",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "browser"],
+  "background_color": "#F3EDE2",
+  "theme_color": "#E9B7A0",
+  "orientation": "any",
+  "categories": ["lifestyle", "productivity", "personalization"],
+  "icons": [
+    { "src": "./icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "./icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "./icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

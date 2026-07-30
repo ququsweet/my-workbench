@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>我的专属工作台</title>
+  <meta name="theme-color" content="#E9B7A0" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="工作台" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+  <link rel="icon" href="icons/icon-192.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- 左侧纵向导航栏（手机端为抽屉） -->
+    <aside class="sidebar" id="sidebar">
+      <div class="brand" id="brandBtn" title="返回桌面">
+        <div class="brand-logo">🌟</div>
+        <div class="brand-text">我的<br/>工作台</div>
+      </div>
+      <nav class="nav" id="nav"><!-- 导航由 JS 渲染 --></nav>
+      <div class="sidebar-footer">
+        <div class="data-tip">📦 数据本地留存</div>
+      </div>
+    </aside>
+    <div class="sidebar-mask" id="sidebarMask"></div>
+
+    <!-- 主内容区 -->
+    <main class="main">
+      <header class="topbar">
+        <button class="hamburger" id="menuBtn" title="菜单">☰</button>
+        <div class="topbar-title" id="topTitle">桌面</div>
+        <div class="topbar-sub" id="topSub"></div>
+        <div class="topbar-actions">
+          <button class="icon-btn" id="resetTodayBtn" title="清空今日打卡/记录">🔄 今日重置</button>
+          <button class="icon-btn" id="exportBtn" title="导出全部数据">💾 备份</button>
+          <button class="icon-btn" id="importBtn" title="导入数据">📥 恢复</button>
+          <input type="file" id="importFile" accept="application/json" hidden />
+        </div>
+      </header>
+      <section class="content" id="content"><!-- 内容由 JS 渲染 --></section>
+    </main>
+  </div>
+
+  <!-- 全局弹窗容器 -->
+  <div class="modal-mask" id="modalMask" hidden>
+    <div class="modal" id="modal"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
