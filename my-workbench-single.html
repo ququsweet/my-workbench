@@ -272,6 +272,21 @@ input,textarea,select{font-family:inherit;color:var(--ink);}
 .tri-actions .btn{flex:1;}
 .btn.outline{background:#fff;border:1.5px solid var(--peach);color:var(--peach-deep);box-shadow:none;}
 .btn.outline:hover{background:var(--card-soft);}
+/* 解析框：按钮行、实时预览 */
+.note-area{width:100%;min-height:96px;border:1.5px solid var(--line);background:var(--card-soft);border-radius:14px;padding:12px 14px;font-size:14px;line-height:1.6;color:var(--ink);outline:none;resize:vertical;box-sizing:border-box;font-family:inherit;}
+.note-area:focus{border-color:var(--peach);}
+.parse-btns{display:flex;gap:10px;margin-top:12px;}
+.parse-btns .btn{flex:1;}
+.parse-live{margin:12px 0 2px;}
+.parse-live[hidden]{display:none;}
+.pl-card{background:var(--card-soft);border:1.5px dashed var(--peach);border-radius:14px;padding:12px 14px;}
+.pl-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px;}
+.pl-cat{font-size:12px;font-weight:700;color:#fff;background:var(--peach);padding:3px 10px;border-radius:999px;white-space:nowrap;}
+.pl-name{font-size:15px;font-weight:800;color:var(--ink);}
+.pl-stats{display:flex;gap:14px;font-size:12.5px;color:var(--ink-soft);margin-bottom:8px;}
+.pl-mat{margin:0;padding-left:18px;font-size:13px;color:var(--ink);line-height:1.7;}
+.pl-mat .empty{list-style:none;margin-left:-18px;color:var(--ink-soft);}
+.pl-hint{margin-top:8px;font-size:11.5px;color:var(--peach-deep);}
 /* 分段选择（食品 / 手工） */
 .seg{display:flex;gap:8px;}
 .seg-btn{flex:1;padding:9px;border-radius:12px;border:1.5px solid var(--line);background:var(--card-soft);font-size:13.5px;font-weight:600;color:var(--ink-soft);cursor:pointer;transition:.15s;}
@@ -1262,23 +1277,32 @@ input,textarea,select{font-family:inherit;color:var(--ink);}
     content.innerHTML = `
       <div id="craftArea"></div>
       <div class="craft-parse">
-        <div class="w-head">🤖 智能解析 · 小红书笔记拆解</div>
-        <p class="craft-tip">复制小红书笔记的<b>正文</b>（或链接），点「粘贴并解析」会自动读取剪贴板，帮你梳理「材料 / 克重」与「步骤」，并判断属于 🧁食品 还是 🧶手工。</p>
-        <textarea id="parseInput" class="note-area" style="min-height:90px" placeholder="这里会自动填入剪贴板内容，也可手动粘贴笔记正文…"></textarea>
+        <div class="w-head">🤖 智能解析 · 笔记一键拆解</div>
+        <p class="craft-tip">把笔记<b>正文</b>（或链接）粘贴到下面的框里，松开手就会<b>实时识别</b>出分类、材料与步骤；确认后点「粘贴并解析」即可一键填入对应分区。小红书请在 App 内「复制正文」再粘贴过来 🧁🧶</p>
+        <textarea id="parseInput" class="note-area" placeholder="粘贴笔记正文到这里，例如：戚风蛋糕做法 + 材料清单 + 步骤…"></textarea>
+        <div class="parse-live" id="parseLive" hidden></div>
         <div class="parse-msg" id="parseMsg"></div>
-        <button class="btn" id="parseBtn">📋 粘贴并解析</button>
+        <div class="parse-btns">
+          <button class="btn" id="parseBtn">📋 粘贴并解析</button>
+          <button class="btn ghost" id="parseClear">清空</button>
+        </div>
       </div>`;
     paintCraftArea();
     $('#parseBtn').onclick = onParseClick;
+    $('#parseClear').onclick = () => { const ta = $('#parseInput'); if (ta) ta.value = ''; setParseMsg(''); const lv = $('#parseLive'); if (lv) lv.hidden = true; };
     const pi = $('#parseInput');
-    if (pi) pi.addEventListener('input', () => {
-      const v = pi.value.trim();
-      if (/xiaohongshu|xhslink/i.test(v)) {
-        setParseMsg('🔗 检测到小红书链接：小红书不允许程序自动读取笔记正文（平台限制）。请在小红书 App 打开该笔记 → 右上角「…」→「复制」（选复制<b>正文</b>，不是「复制链接」）→ 回到这里把正文粘贴进来 → 点「粘贴并解析」即可自动拆材料与步骤 ✨');
-      } else if (!v) {
-        setParseMsg('');
-      }
-    });
+    if (pi) {
+      pi.addEventListener('input', () => {
+        const v = pi.value.trim();
+        if (/xiaohongshu|xhslink/i.test(v)) {
+          setParseMsg('🔗 检测到小红书链接：小红书不允许程序自动读取笔记正文（平台限制）。请在小红书 App 打开该笔记 → 右上角「…」→「复制」（选复制<b>正文</b>，不是「复制链接」）→ 回到这里把正文粘贴进来 → 点「粘贴并解析」即可自动拆材料与步骤 ✨');
+          const lv = $('#parseLive'); if (lv) lv.hidden = true;
+        } else if (!v) {
+          setParseMsg(''); const lv = $('#parseLive'); if (lv) lv.hidden = true;
+        } else { setParseMsg(''); liveParse(); }
+      });
+      pi.addEventListener('paste', () => setTimeout(liveParse, 60));
+    }
   }
 
   function setParseMsg(html) { const el = $('#parseMsg'); if (el) el.innerHTML = html; }
@@ -1405,7 +1429,7 @@ input,textarea,select{font-family:inherit;color:var(--ink);}
       text = fetched; $('#parseInput').value = text;
     }
     const data = parseContent(text);
-    setParseMsg('✅ 识别完成，请确认 / 编辑下方内容：');
+    setParseMsg('');
     showParseResult(data);
   }
   function isURL(s) { return /^(https?:\/\/)/i.test(s.trim()) || /xhslink\.com/i.test(s); }
@@ -1423,46 +1447,145 @@ input,textarea,select{font-family:inherit;color:var(--ink);}
     } catch (e) { return null; }
   }
 
-  function parseContent(text) {
-    const lines = text.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
-    const foodKw = ['蛋糕', '面包', '饼干', '甜点', '甜品', '烘焙', '食谱', '配方', '面团', '奶油', '糖粉', '低筋', '高筋', '鸡蛋', '牛奶', '烤箱', '打发', '裱花', '慕斯', '芝士', '戚风', '可颂', '布丁', '蛋挞'];
-    const handKw = ['黏土', '超轻黏土', '折纸', '编织', '钩针', '刺绣', '手工', '拼豆', '滴胶', '串珠', '木工', 'diy', 'DIY', '羊毛毡', '不织布', '衍纸', '史莱姆', '流体熊', '数字油画', '扭棒'];
-    let f = 0, h = 0;
-    foodKw.forEach(k => { if (text.includes(k)) f++; });
-    handKw.forEach(k => { if (text.toLowerCase().includes(k.toLowerCase())) h++; });
-    const cat = f >= h ? 'food' : 'hand';
+  /* ---- 解析核心：分类 / 名字 / 材料 / 步骤 ---- */
+  const RE_AMT = /(\d+(?:\.\d+)?)\s*(?:克|g|G|千克|kg|KG|公斤|毫升|ml|ML|个|颗|根|片|勺|茶匙|汤匙|把|份|%|滴|张|条|块|枚|瓣|粒|杯|包|袋|簇|撮|支|管|瓶|盒|听|只|尾)/;
+  const RE_SOFT = /(适量|少许|一丢丢|若干|一些|一点|一点点|适量即可|半量|一倍|两倍|若干克|几滴|少量|大量|一勺|一撮|半勺)/;
+  const RE_RATIO = /\d+(?:\.\d+)?\s*:\s*\d+(?:\.\d+)?/;
+  const isAmt = s => RE_AMT.test(s) || RE_SOFT.test(s) || RE_RATIO.test(s);
+  const STEP_VERB = /^[搅拌混合倒入烤放加切揉蒸煮炒炸煎焖炖熬打发筛过冷藏冷冻发酵称重涂抹装饰组装擀包裱花卷折穿串编缠贴粘剪涂画刷蒸烘焙]|^将|^把|^待|^然后|^接着|^最后|^先|^再|^取|^用/;
+  const MAT_HEADER = /^(材料|食材|用料|配料|准备|清单|工具|需要|备料)/;
+  const STEP_HEADER = /^(步骤|做法|制作|流程|过程|操作|方法|教程)/;
 
-    let name = '';
-    if (lines[0]) {
-      let l = lines[0].replace(/^[^\w一-龥]+/, '').replace(/[🍰🧁🎂🍪🥖🍞🥐🧇🍩🥧]/g, '').trim();
-      l = l.split(/[｜|·•]/)[0].trim();
-      if (l.length > 30) l = l.slice(0, 30);
-      name = l || '未命名作品';
+  function cleanName(s) {
+    return s.replace(/[#@]/g, '').replace(/(的做法|配方|教程|笔记|步骤|来啦)$/, '').replace(/[｜|·•\-—~].*$/, '').replace(/[🍰🧁🎂✨💕❤️🔥🌟⭐✅📌]/g, '').trim();
+  }
+  function normTitle(ln) {
+    return ln.replace(/^(?:超简单|零失败|私藏|新手|保姆级|治愈|周末|今日|今天|手作|自制|懒人|极简|必看|收藏|超好吃|巨好吃|绝绝子|建议|在家|教你|[！!。\s])+/, '')
+      .replace(/[🍰🧁🎂✨💕❤️🔥🌟⭐✅📌]/g, '').trim();
+  }
+  function detectName(lines, t) {
+    let m = t.match(/[《【\["“]([^》\]】"”]{1,30})[》\]】"”]/);
+    if (m && m[1].trim()) return cleanName(m[1].trim());
+    const suf = /(.+?)(?:的做法|配方|教程|笔记|步骤|来啦)\s*$/;
+    for (const ln of lines) { const mm = ln.match(suf); if (mm && mm[1].trim().length <= 20) return cleanName(mm[1].trim()); }
+    const teach = /(?:教你做|手把手教|一起做|做一做|尝试做)(.+?)(?:[！!。\n]|$)/;
+    for (const ln of lines) { const mm = ln.match(teach); if (mm && mm[1].trim().length <= 20) return cleanName(mm[1].trim()); }
+    const kw = ['蛋糕', '面包', '饼干', '甜品', '甜点', '慕斯', '戚风', '可颂', '布丁', '蛋挞', '雪媚娘', '马卡龙', '披萨', '馒头', '包子', '汤圆', '吐司', '泡芙', '芝士', '曲奇', '黏土', '折纸', '编织', '钩针', '刺绣', '串珠', '滴胶', '羊毛毡', '衍纸', '油画', '史莱姆', '流体熊', '扭棒'];
+    for (const ln of lines) { const n = normTitle(ln); if (n.length >= 2 && n.length <= 18 && !/[。！？!?；;：:]/.test(n) && /^[一-龥]/.test(n) && kw.some(k => n.includes(k))) return cleanName(n); }
+    let first = ''; for (const ln of lines) { if (!MAT_HEADER.test(ln) && !STEP_HEADER.test(ln)) { first = normTitle(ln); break; } }
+    first = first.split(/[｜|·•\-—~]/)[0].trim();
+    if (first.length > 20) first = first.slice(0, 20);
+    return cleanName(first) || '未命名作品';
+  }
+  function splitMat(line) {
+    const frags = line.split(/[，,、；;]/).map(s => s.trim()).filter(Boolean);
+    const out = [];
+    for (let fr of frags) {
+      fr = fr.replace(/^[\s\-\*•·▪️◾◽●○◆★✓✔️⭐🔸🔹➤►]+/, '').replace(/^[①②③④⑤⑥⑦⑧⑨⑩]\s*/, '');
+      fr = fr.replace(/[（(][^）)]*?[）)]/g, mm => isAmt(mm) ? '' : mm); // 去掉括号内的用量
+      if (!fr) continue;
+      const r = fr.match(RE_RATIO), a = fr.match(RE_AMT), s = fr.match(RE_SOFT);
+      const amount = r ? r[0] : (a ? a[0] : (s ? s[0] : ''));
+      let name = fr.replace(RE_RATIO, '').replace(RE_AMT, '').replace(RE_SOFT, '').replace(/[：:]/g, '').trim();
+      name = name.replace(/^(倒入|加入|放入|加|放|取|准备|用|把|将|适量|少许|一些)/, '')
+        .replace(/[（）()]/g, '').replace(/[的]+$/, '').replace(/[🍰🧁🎂✨💕]/g, '').trim();
+      if (!name) name = fr.replace(RE_RATIO, '').replace(RE_AMT, '').replace(RE_SOFT, '').trim() || fr;
+      if (name) out.push({ name, amount });
     }
+    return out;
+  }
+  function isStepLine(l) {
+    if (/^\s*\(?(?:\d+|[一二三四五六七八九十百零]+)\)?[.、)）:：]/.test(l)) return true;
+    if (/第[一二三四五六七八九十百零\d]+步/.test(l)) return true;
+    if (STEP_VERB.test(l) && l.length >= 6) return true;
+    return false;
+  }
+  function parseContent(text) {
+    const norm = s => s.replace(/\s*#\S+/g, ' ')
+      .replace(/[🍰🧁🎂🍪🥖🍞🥐🧇🍩🥧🥯🍮✨💕❤️🔥🌟⭐✅📌👉👇💡🍃🌸💗🥰😋]/g, ' ')
+      .replace(/[ \t]+/g, ' ').trim();
+    const t = norm(text);
+    const lines = t.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
 
-    const amtRe = /(\d+(?:\.\d+)?)\s*(?:克|g|G|千克|kg|KG|公斤|毫升|ml|ML|个|颗|根|片|勺|茶匙|汤匙|把|份|%|滴|张|条|块|枚|瓣|粒|杯|包|袋|簇|撮)|适量|少许|一丢丢|若干/;
-    const ratioRe = /\d+\s*:\s*\d+/;
-    const actionRe = /[搅拌混合倒入烤放加切揉蒸煮炒打发筛过冷藏冷冻发酵称重涂抹装饰组装擀包裱花]/;
-    const materials = [], stepLines = [];
-    lines.forEach((raw, idx) => {
-      if (idx === 0) return;
-      let l = raw.replace(/^[\s\-\*•·▪️◾◽●○◆★✓✔️⭐🔸🔹➤►]+/, '');
-      l = l.replace(/^[①②③④⑤⑥⑦⑧⑨⑩]\s*/, '');
-      if (amtRe.test(l) || ratioRe.test(l)) {
-        const r = l.match(ratioRe); const m = l.match(amtRe);
-        const amount = r ? r[0] : (m ? m[0] : '适量');
-        let mn = l.replace(ratioRe, '').replace(amtRe, '').replace(/[：:]/g, '').trim();
-        mn = (mn.split(/[｜|·•]/)[0] || l).trim();
-        if (!mn) mn = l;
-        materials.push({ name: mn, amount });
-      } else if (/^\s*\(?(\d+|[一二三四五六七八九十]+)\)?[\.、:：]/.test(l) || /步骤|第.?步|做法|制作|流程/.test(l)) {
-        stepLines.push(l);
-      } else if (actionRe.test(l) && l.length > 3) {
-        stepLines.push(l);
+    const foodKw = { '蛋糕': 2, '面包': 2, '饼干': 2, '甜点': 2, '甜品': 2, '烘焙': 3, '食谱': 2, '配方': 2, '面团': 3, '奶油': 3, '糖粉': 2, '低筋': 3, '高筋': 3, '鸡蛋': 2, '牛奶': 2, '烤箱': 3, '打发': 3, '裱花': 2, '慕斯': 2, '芝士': 2, '戚风': 3, '可颂': 2, '布丁': 2, '蛋挞': 2, '面粉': 3, '黄油': 3, '砂糖': 2, '糖': 1, '酵母': 2, '泡打粉': 2, '巧克力': 2, '草莓': 1, '芒果': 1, '抹茶': 1, '吐司': 2, '披萨': 2, '馒头': 2, '包子': 2, '汤圆': 2, '雪媚娘': 2, '马卡龙': 2, '曲奇': 2, '椰蓉': 1, '芋泥': 1, '红豆': 1, '淡奶油': 3 };
+    const handKw = { '黏土': 3, '超轻黏土': 3, '折纸': 3, '编织': 3, '钩针': 3, '刺绣': 3, '手工': 2, '拼豆': 3, '滴胶': 3, '串珠': 3, '木工': 3, 'diy': 2, '羊毛毡': 3, '不织布': 3, '衍纸': 3, '史莱姆': 2, '流体熊': 3, '数字油画': 3, '扭棒': 3, '热熔胶': 2, '胶水': 1, '剪刀': 1, '毛线': 3, '棉绳': 2, '麻绳': 2, '丝带': 2, '珠': 2, '纸板': 1, '铁丝': 2, '丙烯': 2, '颜料': 1, '画布': 2, '缠绕': 2, '粘贴': 1, '缝': 1, '折': 1, '穿': 1, '串': 1, '编': 2 };
+    let f = 0, h = 0; const low = t.toLowerCase();
+    for (const k in foodKw) if (low.includes(k.toLowerCase())) f += foodKw[k];
+    for (const k in handKw) if (low.includes(k.toLowerCase())) h += handKw[k];
+    const cat = f === h ? 'food' : (f > h ? 'food' : 'hand');
+
+    const name = detectName(lines, t);
+    let mode = 'auto';
+    let titleChecked = false;
+    const materials = [], steps = [], seen = new Set();
+
+    const cleanLine = l => l.replace(/^[\s\-\*•·▪️◾◽●○◆★✓✔️⭐🔸🔹➤►]+/, '').replace(/^[①②③④⑤⑥⑦⑧⑨⑩]\s*/, '');
+    const pushMat = l => splitMat(l).forEach(x => { if (!x.name || seen.has(x.name)) return; seen.add(x.name); materials.push(x); });
+    const pushStep = s => {
+      if (!s || steps.includes(s)) return;
+      // 拆分同一行内的多条编号步骤：1.x 2.y 3.z（编号后可有/无空格）
+      const parts = s.split(/\s*\d+[.、)）]\s*/).map(p => p.trim()).filter(Boolean);
+      if (parts.length > 1) parts.forEach(p => { if (p && !steps.includes(p)) steps.push(p); });
+      else steps.push(s);
+    };
+    const processLine = (rawLine) => {
+      let l = cleanLine(rawLine);
+      if (!l) return;
+      if (!titleChecked) {
+        titleChecked = true;
+        if (!isAmt(l) && name && name.length >= 3 && l.includes(name)) return; // 首行即标题，跳过
       }
-    });
-    const steps = [...new Set(stepLines)];
-    return { name, cat, materials, steps };
+      const hasAmt = isAmt(l);
+      let isMat = false, isStep = false;
+      if (mode === 'mat') isMat = true;
+      else if (mode === 'step') isStep = true;
+      else if (hasAmt) isMat = true;
+      else if (isStepLine(l)) isStep = true;
+      else if (l.length <= 14 && /[一-龥]/.test(l) && !/[。！？!?；;：:]/.test(l)) isMat = true;
+      if (isMat) pushMat(l);
+      else if (isStep) {
+        const s = l.replace(/^\s*\(?(?:\d+|[一二三四五六七八九十百零]+)\)?[.、)）:：]\s*/, '')
+          .replace(/第[一二三四五六七八九十百零\d]+步[：:]?/, '')
+          .replace(/^(步骤|做法|制作|流程|过程)[：:]?/, '')
+          .replace(/^(然后|接着|最后|先|再|随后|之后)[，,：:]/, '').trim();
+        pushStep(s);
+      }
+    };
+
+    const stripHead = (s, re) => { let r = s; while (re.test(r)) r = r.replace(re, ''); return r.trim(); };
+    const MAT_RE = /^(?:材料|食材|用料|配料|准备|清单|工具|需要|备料)[:：]?\s*/;
+    const STEP_RE = /^(?:步骤|做法|制作|流程|过程|操作|方法|教程)[:：]?\s*/;
+    for (const raw of lines) {
+      if (MAT_HEADER.test(raw)) { mode = 'mat'; const rest = stripHead(raw, MAT_RE); if (rest) processLine(rest); continue; }
+      if (STEP_HEADER.test(raw)) { mode = 'step'; const rest = stripHead(raw, STEP_RE); if (rest) processLine(rest); continue; }
+      processLine(raw);
+    }
+    return { name, cat, materials, steps, fScore: f, hScore: h };
+  }
+
+  /* 实时预览：粘贴即解析，下方即时显示识别结果 */
+  let liveTimer = null;
+  function liveParse() {
+    const pi = $('#parseInput'); if (!pi) return;
+    const v = pi.value.trim();
+    const live = $('#parseLive');
+    if (!live) return;
+    if (!v || isURL(v) || /xiaohongshu|xhslink/i.test(v) || v.replace(/\s/g, '').length < 12) { live.hidden = true; return; }
+    clearTimeout(liveTimer);
+    liveTimer = setTimeout(() => {
+      const d = parseContent(v);
+      const catName = d.cat === 'food' ? '🧁 食品DIY' : '🧶 手工DIY';
+      const matL = d.materials.length
+        ? d.materials.slice(0, 6).map(x => `<li>${esc(x.name)}${x.amount ? ' · <b>' + esc(x.amount) + '</b>' : ''}</li>`).join('')
+        : '<li class="empty">未识别到材料</li>';
+      live.innerHTML = `<div class="pl-card">
+        <div class="pl-top"><span class="pl-cat">${catName}</span><span class="pl-name">${esc(d.name)}</span></div>
+        <div class="pl-stats"><span>📦 材料 ${d.materials.length} 项</span><span>📝 步骤 ${d.steps.length} 项</span></div>
+        <ul class="pl-mat">${matL}</ul>
+        <div class="pl-hint">确认无误点「粘贴并解析」→ 选 添加 / 编辑 填入对应分区</div>
+      </div>`;
+      live.hidden = false;
+    }, 350);
   }
 
   function showParseResult(data) {
@@ -1473,10 +1596,11 @@ input,textarea,select{font-family:inherit;color:var(--ink);}
     const stepHtml = data.steps.length
       ? data.steps.map(s => '<li>' + esc(s) + '</li>').join('')
       : '<li class="empty">未识别出步骤，可点「编辑」补充</li>';
-    showModal(`<h3>🤖 识别结果确认</h3>
+    showModal(`<h3>🤖 识别结果 · ${catName}</h3>
       <div class="parse-result">
         <div class="pr-row"><span class="pr-k">内容名字</span><b class="pr-v">${esc(data.name)}</b></div>
         <div class="pr-row"><span class="pr-k">识别分类</span><b class="pr-v">${catName}</b></div>
+        <div class="pr-row"><span class="pr-k">已识别</span><span class="pr-v" style="font-size:13px;font-weight:600">📦 材料 ${data.materials.length} 项 ｜ 📝 步骤 ${data.steps.length} 项</span></div>
         <div class="pr-block"><div class="pr-k">所需材料 / 克重</div><ul class="pr-list">${matHtml}</ul></div>
         <div class="pr-block"><div class="pr-k">制作步骤</div><ol class="pr-list">${stepHtml}</ol></div>
       </div>
