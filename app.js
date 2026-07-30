@@ -823,7 +823,7 @@
   /* ===================================================================
      手作专区（食品DIY / 手工DIY + 智能解析框）
      =================================================================== */
-  let craftState = { cat: null };
+  let craftState = { cat: null, showDrafts: false };
   function getCraft() {
     if (!DB.craft) DB.craft = { food: { items: [] }, hand: { items: [] } };
     if (!DB.craft.food) DB.craft.food = { items: [] };
@@ -874,28 +874,32 @@
     if (!craftState.cat) {
       area.innerHTML = `
         <div class="craft-cats">
-          ${craftCatCard('food', '🧁', '食品DIY', '蛋糕 / 面包 / 甜点配方', c.food.items.length)}
-          ${craftCatCard('hand', '🧶', '手工DIY', '黏土 / 编织 / 手工教程', c.hand.items.length)}
+          ${craftCatCard('food', '🧁', '食品DIY', '蛋糕 / 面包 / 甜点配方', c.food.items.length, c.food.items.filter(x => x.draft).length)}
+          ${craftCatCard('hand', '🧶', '手工DIY', '黏土 / 编织 / 手工教程', c.hand.items.length, c.hand.items.filter(x => x.draft).length)}
         </div>`;
       area.querySelectorAll('[data-cat]').forEach(el => el.onclick = () => setCraftCat(el.dataset.cat));
       return;
     }
     const cat = craftState.cat, isFood = cat === 'food', arr = catArr(cat).items;
+    const drafts = arr.filter(x => x.draft);
+    const view = craftState.showDrafts ? drafts : arr;
     area.innerHTML = `
       <div class="craft-head">
         <button class="btn ghost sm" id="craftBack">← 返回</button>
         <div class="craft-head-title">${isFood ? '🧁 食品DIY' : '🧶 手工DIY'}</div>
+        ${drafts.length ? `<button class="btn ghost sm" id="craftDraftFilter">${craftState.showDrafts ? '显示全部' : '📝 草稿 ' + drafts.length}</button>` : ''}
         <button class="btn sm" id="craftAdd">＋ 新增${isFood ? '食品' : '手工'}名称</button>
       </div>
       <div class="list" id="craftList"></div>`;
     $('#craftBack').onclick = () => setCraftCat(null);
     $('#craftAdd').onclick = () => openCraftEditor(cat, null);
+    const df = $('#craftDraftFilter'); if (df) df.onclick = () => { craftState.showDrafts = !craftState.showDrafts; paintCraftArea(); };
     const el = area.querySelector('#craftList');
-    if (!arr.length) { el.innerHTML = `<div class="empty">还没有记录，点右上角「＋ 新增${isFood ? '食品' : '手工'}名称」开始吧～</div>`; return; }
-    el.innerHTML = arr.slice().reverse().map(it => `
-      <div class="row craft-row" data-id="${it.id}">
+    if (!view.length) { el.innerHTML = `<div class="empty">${craftState.showDrafts ? '这个分区还没有草稿～' : '还没有记录，点右上角「＋ 新增' + (isFood ? '食品' : '手工') + '名称」开始吧～'}</div>`; return; }
+    el.innerHTML = view.slice().reverse().map(it => `
+      <div class="row craft-row${it.draft ? ' is-draft' : ''}" data-id="${it.id}">
         <div class="row-main"><div class="row-title">${esc(it.name)}</div>
-          <div class="row-sub">📦 材料 ${it.materials ? it.materials.length : 0} 项 ｜ 📝 步骤 ${it.steps ? it.steps.length : 0} 项${it.yield ? ' ｜ 🍽 ' + esc(it.yield) : ''}</div></div>
+          <div class="row-sub">📦 材料 ${it.materials ? it.materials.length : 0} 项 ｜ 📝 步骤 ${it.steps ? it.steps.length : 0} 项${it.yield ? ' ｜ 🍽 ' + esc(it.yield) : ''}${it.draft ? ' ｜ 📝 草稿' : ''}</div></div>
         <button class="row-edit" data-edit="${it.id}">✏️</button>
         <button class="row-del" data-del="${it.id}">🗑</button>
       </div>`).join('');
@@ -910,13 +914,28 @@
       const it = arr.find(x => x.id === b.dataset.edit); openCraftEditor(cat, it);
     });
   }
-  function craftCatCard(cat, ico, name, desc, n) {
+  function craftCatCard(cat, ico, name, desc, n, dn) {
     return `<div class="craft-cat" data-cat="${cat}">
       <div class="cc-ico">${ico}</div>
       <div class="cc-body"><div class="cc-name">${name}</div><div class="cc-desc">${desc}</div></div>
-      <div class="cc-count">${n} 个</div></div>`;
+      <div class="cc-count">${n} 个${dn ? ` · <span class="cc-draft">${dn} 草稿</span>` : ''}</div></div>`;
   }
-  function setCraftCat(cat) { craftState.cat = cat; paintCraftArea(); }
+  function setCraftCat(cat) { craftState.cat = cat; if (!cat) craftState.showDrafts = false; paintCraftArea(); }
+
+  /* ---- 份量换算：按比例缩放用量 / 产量 ---- */
+  const round1 = n => { const r = Math.round(n * 10) / 10; return String(r); };
+  // 仅缩放「数字」，单位/中文/适量等原样保留；比例 a:b 两侧同乘
+  function scaleAmt(s, f) {
+    if (!s || !f || f === 1) return s || '';
+    s = String(s);
+    if (RE_SOFT.test(s)) return s;                                   // 适量 / 少许 不缩放
+    const r = s.match(/^\s*(\d+(?:\.\d+)?)\s*:\s*(\d+(?:\.\d+)?)/);   // a:b 比例
+    if (r) { const a = round1(+r[1] * f), b = round1(+r[2] * f); return s.replace(r[0], a + ':' + b); }
+    const m = s.match(/\d+(?:\.\d+)?/);                               // 首个数字（任意位置）
+    if (!m) return s;
+    const scaled = round1(+m[0] * f);
+    return s.slice(0, m.index) + scaled + s.slice(m.index + m[0].length);
+  }
 
   /* ---- 编辑器（新增 / 编辑 / 解析后编辑 共用） ---- */
   function setupCraftLists(initialMat, initialStep) {
@@ -939,7 +958,11 @@
       getMat: () => mat.filter(m => m.name || m.amount).map(m => ({ name: m.name.trim(), amount: m.amount.trim() })),
       getStep: () => step.map(s => s.text.trim()).filter(Boolean),
       addMat: () => { mat.push({ name: '', amount: '' }); paintMat(); },
-      addStep: () => { step.push({ text: '' }); paintStep(); }
+      addStep: () => { step.push({ text: '' }); paintStep(); },
+      // 弹窗渲染完成后，初次把材料 / 步骤画进 DOM（setupCraftLists 可能在 showModal 前调用，此时 #eMat 尚不存在）
+      paint: () => { paintMat(); paintStep(); },
+      // 按当前显示的材料用量做比例缩放（可多次叠加；手动新增的材料同样会被换算）
+      scale: f => { mat = mat.map(m => ({ name: m.name, amount: scaleAmt(m.amount, f) })); paintMat(); }
     };
   }
 
@@ -954,20 +977,42 @@
         <button type="button" class="seg-btn ${cat === 'food' ? 'on' : ''}" data-cat="food">🧁 食品DIY</button>
         <button type="button" class="seg-btn ${cat === 'hand' ? 'on' : ''}" data-cat="hand">🧶 手工DIY</button></div></div>
       <div class="field"><label>份量 / 产量（可选）</label><input type="text" id="eYield" value="${esc(item.yield || '')}" placeholder="如：可做12个 / 6寸 / 2人份"/></div>
+      <div class="field"><label>份量换算（按原始配方批量调整材料克重 / 产量）</label>
+        <div class="scale-seg" id="scaleSeg">
+          <button type="button" class="scale-btn" data-f="0.5">×½</button>
+          <button type="button" class="scale-btn on" data-f="1">×1</button>
+          <button type="button" class="scale-btn" data-f="2">×2</button>
+          <button type="button" class="scale-btn" data-f="3">×3</button>
+          <button type="button" class="scale-btn" data-f="custom">自定义</button>
+        </div>
+        <input type="number" id="eScaleCustom" class="kv-v" placeholder="自定义倍数，如 1.5" step="0.1" min="0.1" style="display:none;margin-top:8px;width:170px"/>
+        <div class="field-hint">点倍数即按当前材料 / 产量比例缩放（可多次叠加；手动新增的材料也会被换算）</div>
+      </div>
       <div class="field"><label>所需材料 / 克重</label><div id="eMat"></div><button type="button" class="btn ghost sm" id="eMatAdd">＋ 添加材料</button></div>
       <div class="field"><label>制作步骤</label><div id="eStep"></div><button type="button" class="btn ghost sm" id="eStepAdd">＋ 添加步骤</button></div>
-      <div class="modal-actions"><button class="btn ghost" id="eCancel">取消</button><button class="btn" id="eOk">${isEdit ? '保存' : '添加'}</button></div>`);
+      <div class="modal-actions"><button class="btn ghost" id="eCancel">取消</button><button class="btn ghost" id="eDraft">💾 存草稿</button><button class="btn" id="eOk">${isEdit ? '保存' : '添加'}</button></div>`);
+    L.paint();
     $('#eMatAdd').onclick = L.addMat; $('#eStepAdd').onclick = L.addStep;
     document.querySelectorAll('.seg-btn').forEach(b => b.onclick = () => { curCat = b.dataset.cat; document.querySelectorAll('.seg-btn').forEach(x => x.classList.toggle('on', x.dataset.cat === curCat)); });
     $('#eCancel').onclick = closeModal;
-    $('#eOk').onclick = () => {
-      const name = $('#eName').value.trim() || '未命名';
+    const scaleYield = f => { const y = $('#eYield'); if (y) y.value = scaleAmt(y.value, f); };
+    const setScaleOn = f => document.querySelectorAll('#scaleSeg .scale-btn').forEach(b => b.classList.toggle('on', b.dataset.f === String(f)));
+    document.querySelectorAll('#scaleSeg .scale-btn').forEach(b => b.onclick = () => {
+      if (b.dataset.f === 'custom') { const ci = $('#eScaleCustom'); if (ci) { ci.style.display = 'block'; ci.focus(); } return; }
+      const f = parseFloat(b.dataset.f); L.scale(f); scaleYield(f); setScaleOn(b.dataset.f);
+    });
+    const ci = $('#eScaleCustom');
+    if (ci) ci.oninput = () => { const f = parseFloat(ci.value); if (!isNaN(f) && f > 0) { L.scale(f); scaleYield(f); setScaleOn('custom'); } };
+    const saveItem = (draft) => {
+      const name = $('#eName').value.trim() || (draft ? '未命名草稿' : '未命名');
       const c = getCraft(); const arr = curCat === 'food' ? c.food : c.hand;
-      const data = { name, materials: L.getMat(), steps: L.getStep(), yield: $('#eYield').value.trim() };
+      const data = { name, materials: L.getMat(), steps: L.getStep(), yield: $('#eYield').value.trim(), draft };
       if (isEdit) { const it = arr.items.find(x => x.id === item.id); if (it) Object.assign(it, data); }
       else arr.items.unshift({ id: uid(), ...data });
       save(); closeModal(); craftState.cat = curCat; paintCraftArea();
     };
+    $('#eOk').onclick = () => { saveItem(false); if (isEdit && item.draft) alert('草稿已发布 ✅'); };
+    $('#eDraft').onclick = () => { saveItem(true); alert('已存为草稿 📝（在手作专区对应分区里可随时继续编辑 / 发布）'); };
   }
 
   /* ---- 智能解析 ---- */
@@ -1201,15 +1246,22 @@
       </div>
       <div class="tri-actions">
         <button class="btn ghost" id="pCancel">取消</button>
+        <button class="btn ghost" id="pDraft">💾 存草稿</button>
         <button class="btn" id="pAdd">添加</button>
         <button class="btn outline" id="pEdit">编辑</button>
       </div>`);
     $('#pCancel').onclick = closeModal;
     $('#pAdd').onclick = () => {
       const c = getCraft(); const arr = data.cat === 'food' ? c.food : c.hand;
-      arr.items.unshift({ id: uid(), name: data.name || '未命名', materials: data.materials || [], steps: data.steps || [], yield: data.yield || '' });
+      arr.items.unshift({ id: uid(), name: data.name || '未命名', materials: data.materials || [], steps: data.steps || [], yield: data.yield || '', draft: false });
       save(); closeModal(); craftState.cat = data.cat; paintCraftArea();
       alert('已添加到' + catName + '：' + (data.name || '未命名') + ' ✅');
+    };
+    $('#pDraft').onclick = () => {
+      const c = getCraft(); const arr = data.cat === 'food' ? c.food : c.hand;
+      arr.items.unshift({ id: uid(), name: data.name || '未命名', materials: data.materials || [], steps: data.steps || [], yield: data.yield || '', draft: true });
+      save(); closeModal(); craftState.cat = data.cat; paintCraftArea();
+      alert('已存为草稿 📝（在手作专区「' + catName + '」分区里可随时继续编辑 / 发布）');
     };
     $('#pEdit').onclick = () => openCraftEditor(data.cat, { name: data.name, materials: data.materials, steps: data.steps, yield: data.yield || '' });
   }

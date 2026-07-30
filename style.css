@@ -292,6 +292,18 @@ input,textarea,select{font-family:inherit;color:var(--ink);}
 .kv-del:hover{background:#f3d9cf;}
 .modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:16px;}
 
+/* 份量换算按钮组 */
+.scale-seg{display:flex;gap:6px;flex-wrap:wrap;}
+.scale-btn{flex:1;min-width:46px;padding:8px 4px;border-radius:11px;border:1.5px solid var(--line);background:var(--card-soft);font-size:13.5px;font-weight:700;color:var(--ink-soft);cursor:pointer;transition:.15s;}
+.scale-btn:hover{border-color:var(--peach);color:var(--peach-deep);}
+.scale-btn.on{background:linear-gradient(145deg,#FBE3D6,#F6D3C2);border-color:var(--peach);color:var(--peach-deep);}
+.field-hint{font-size:11px;color:var(--ink-soft);margin-top:6px;line-height:1.5;}
+
+/* 草稿：徽标与列表行 */
+.cc-draft{color:var(--peach-deep);font-weight:700;}
+.craft-row.is-draft{background:linear-gradient(145deg,#FBF3EC,#F6EADD);border-left:3px solid var(--peach);}
+.craft-row.is-draft .row-sub{color:var(--peach-deep);}
+
 /* 滚动条 */
 ::-webkit-scrollbar{width:8px;height:8px;}
 ::-webkit-scrollbar-thumb{background:var(--line);border-radius:8px;}
